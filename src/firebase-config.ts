@@ -1,6 +1,9 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "@firebase/firestore";
+import { getFirestore, CollectionReference, collection, DocumentData } from "@firebase/firestore";
+import { Room } from "./types/Room";
+import { User } from "./types/User";
 
+// Init the firebase app
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_APIKEY,
     authDomain: process.env.REACT_APP_AUTHDOMAIN,
@@ -11,5 +14,15 @@ const firebaseConfig = {
     appId: process.env.REACT_APP_APPID
 };
 
-const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
+// Export firestore db for access in other files
+export const firebaseApp = initializeApp(firebaseConfig);
+export const db = getFirestore(firebaseApp);
+
+// Collection(s) helper function for type declaration
+const createCollection = <T = DocumentData>(collectionName: string) => {
+    return collection(db, collectionName) as CollectionReference<T>
+}
+
+// Export all collections
+export const roomsCollection = createCollection<Room>("rooms")
+export const usersCollection = createCollection<User>("users")

@@ -1,35 +1,38 @@
-import React, { useSyncExternalStore } from 'react';
+import React from 'react';
 import { useState, useEffect } from 'react';
+import { roomsCollection} from "./firebase-config";
+import { getDocs } from "@firebase/firestore";
 import './App.css';
-import {db} from "./firebase-config";
-import { collection, getDocs } from "firebase/firestore";
 
 function App() {
-  const [rooms, setRooms] = useState([]);
-  const roomCollectionsRef = collection(db, "rooms")
+  // GET Room data
+  interface RoomData {
+    id: string;
+    name: string;
+  }
+
+  const [rooms, setRooms] = useState<RoomData[]>([]);
 
   useEffect (() => {
     const getRooms = async () => {
-    const data = await getDocs(roomCollectionsRef);
+    const data = await getDocs(roomsCollection);
     console.log(data.docs);
     setRooms(data.docs.map((doc) => (
       { ...doc.data(), id: doc.id }
     )));
   };
-
   getRooms();
   }, []);
 
+  const roomComponents = rooms.map((room) => (
+      <li key={room.id}>{room.name}</li>
+    ));
+
+  // GET User data
+  
   return (
     <div className="App">
-      {rooms.map((room) => {
-        return (
-          <div>
-            {""}
-            <h1>name: {room.name}</h1>
-          </div>
-        );
-      })}
+      <ul>{roomComponents}</ul>
     </div>
   );
 }
