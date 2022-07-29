@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { roomsCollection, timeSlotCollection } from "./firebase-config";
-import { getDocs, orderBy } from "@firebase/firestore";
+import { getDocs } from "@firebase/firestore";
 import adaLogo from "./images/logo.png"
 import './App.css';
 
@@ -32,8 +32,6 @@ function App() {
   getRooms();
 
   // Get TimeSlot Data
-    //   .collection("timeslots")
-    // .orderBy("id", "asc")
     const getTimeSlots = async () => {
     const timeData = await getDocs(timeSlotCollection);
     setTimeSlots(timeData.docs.map((timeDoc) => (
@@ -51,9 +49,6 @@ function App() {
   const timeSlotComponents = timeSlots.map((timeSlot) => (
     <li key={timeSlot.id}>{timeSlot.stateid}</li>
   ));
-
-
-  // GET User data
   
   return (
     <div className="App">
@@ -62,7 +57,6 @@ function App() {
       </header>
       <main>
         <ul>{roomComponents}</ul>
-        {/* <ul>{getTimeSlots}</ul> */}
         <ul>{timeSlotComponents}</ul>
       </main>
       <footer>© 2022 Ada C17 alum grads - Dana Rocha & Elaine Smith</footer>
