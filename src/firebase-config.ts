@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, CollectionReference, collection, DocumentData } from "@firebase/firestore";
 import { Room } from "./types/Room";
 import { User } from "./types/User";
+import { TimeSlot } from "./types/TimeSlot";
 
 // Init the firebase app
 const firebaseConfig = {
@@ -25,3 +26,4 @@ const createCollection = <T = DocumentData>(collectionName: string) => {
 // Export all collections
 export const roomsCollection = createCollection<Room>("rooms")
 export const usersCollection = createCollection<User>("users")
+export const timeSlotCollection = createCollection<TimeSlot>("timeslots")
