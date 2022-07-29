@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { roomsCollection} from "./firebase-config";
 import { getDocs } from "@firebase/firestore";
+import adaLogo from "./images/logo.png"
 import './App.css';
 
 function App() {
@@ -32,7 +33,13 @@ function App() {
   
   return (
     <div className="App">
-      <ul>{roomComponents}</ul>
+      <header>
+        <img src={adaLogo} alt="Ada Developers Academy logo" id="adaLogo"/>
+      </header>
+      <main>
+        <ul>{roomComponents}</ul>
+      </main>
+      <footer>© 2022 Ada C17 alum grads - Dana Rocha & Elaine Smith</footer>
     </div>
   );
 }

@@ -1,38 +1,38 @@
+.app, header, footer {
+  border: 1px solid red;
+}
+
 .App {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
   text-align: center;
+  font-family: 'Open Sans';
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#adaLogo {
+  max-width: 150px;
+  padding: 5px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+header {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: left;
+}
+
+main {
+  position: relative;
+}
+
+main ul {
+  list-style-type: none;
+}
+
+footer {
+  background-color: #0F355E;
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  font-size: smaller;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  padding: 5px;
 }
