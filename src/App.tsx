@@ -12,13 +12,9 @@ function App() {
     name: string;
   }
 
-  // Setting the type for TimeSlotData to string
+  // // Setting the type for TimeSlotData to string
   interface TimeSlotData {
     stateid: string;
-    id: number;
-  }
-
-  interface sortedData {
     id: number;
   }
 
@@ -26,10 +22,9 @@ function App() {
   const [timeSlots, setTimeSlots] = useState<TimeSlotData[]>([]);
 
   useEffect (() => {
-     // GET Room data
+    // GET Room data
     const getRooms = async () => {
     const roomData = await getDocs(roomsCollection);
-    // console.log(roomData.docs);
     setRooms(roomData.docs.map((roomDoc) => (
       { ...roomDoc.data(), id: roomDoc.id }
     )));
@@ -37,41 +32,26 @@ function App() {
   getRooms();
 
   // Get TimeSlot Data
-//   .collection("timeslots")
-// .orderBy("id", "asc")
-  const getTimeSlots = async () => {
-    // const timeslotcollection = getDocs(timeSlotCollection);
+    //   .collection("timeslots")
+    // .orderBy("id", "asc")
+    const getTimeSlots = async () => {
     const timeData = await getDocs(timeSlotCollection);
-    const sortedTimeData = timeData.orderBy('id', 'asc');
-    // console.log(timeData.docs);
-    // const timeslotDocs = [];
-
-    // timeData.docs.forEach((timeDoc) => (
-      // const timeslot = timeDoc.data()
-      // { ...doc.data(), id: doc.id }
-      // for (timeslot of timeData) {
-      //   timeslotDocs.push(timeslot)
-      // }
-    // ));
-
-    const newTimeData = timeData.docs.map((timeDoc) => (
+    setTimeSlots(timeData.docs.map((timeDoc) => (
       { ...timeDoc.data(), stateid: timeDoc.id }
-    ))
-
-    // const sortedTimeData = newTimeData.orderBy<sortedData>('id', 'asc');
-
-    setTimeSlots(sortedTimeData);
-  };
-  getTimeSlots();
+    )));
+    };
+    getTimeSlots();
   }, []);
+
 
   const roomComponents = rooms.map((room) => (
       <li key={room.id}>{room.name}</li>
     ));
   
   const timeSlotComponents = timeSlots.map((timeSlot) => (
-    <li key={timeSlot.id}>{timeSlot.id}</li>
+    <li key={timeSlot.id}>{timeSlot.stateid}</li>
   ));
+
 
   // GET User data
   
@@ -82,6 +62,7 @@ function App() {
       </header>
       <main>
         <ul>{roomComponents}</ul>
+        {/* <ul>{getTimeSlots}</ul> */}
         <ul>{timeSlotComponents}</ul>
       </main>
       <footer>© 2022 Ada C17 alum grads - Dana Rocha & Elaine Smith</footer>
