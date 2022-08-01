@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { roomsCollection, timeSlotCollection } from "./firebase-config";
-import { getDocs } from "@firebase/firestore";
+import { roomsCollection, timeSlotCollection} from "./firebase-config";
+import { getDocs, orderBy, query } from "@firebase/firestore";
 import adaLogo from "./images/logo.png"
 import './App.css';
 
@@ -24,10 +24,16 @@ function App() {
 
   // Get TimeSlot Data
     const getTimeSlots = async () => {
-    const timeData = await getDocs(timeSlotCollection);
-    setTimeSlots(timeData.docs.map((timeDoc) => (
+    // const timeData = await getDocs(timeSlotCollection).orderBy('id', 'asc');
+    // const timeData = query(timeSlotCollection, orderBy('id', 'asc'));
+    const sortedTimeData = await getDocs(query(timeSlotCollection,orderBy('id', 'asc')));
+    console.log(sortedTimeData);
+    // const sortedTime = query(timeSlotRef).orderBy("id", "asc");
+
+    setTimeSlots(sortedTimeData.docs.map((timeDoc) => (
       { ...timeDoc.data(), stateid: timeDoc.id }
     )));
+    // setTimeSlots(sortedTimeData);
     };
     getTimeSlots();
   }, []);
