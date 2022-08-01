@@ -4,6 +4,7 @@ import { roomsCollection, timeSlotCollection} from "./firebase-config";
 import { getDocs, orderBy, query } from "@firebase/firestore";
 import adaLogo from "./images/logo.png"
 import './App.css';
+import NewReservation from './components/ReservationForm';
 
 function App() {
 
@@ -55,6 +56,9 @@ function App() {
       <main>
         <ul>{roomComponents}</ul>
         <ul>{timeSlotComponents}</ul>
+        <div>
+          <NewReservation/>
+        </div>
       </main>
       <footer>© 2022 Ada C17 alum grads - Dana Rocha & Elaine Smith</footer>
     </div>
