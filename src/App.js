@@ -6,20 +6,11 @@ import adaLogo from "./images/logo.png"
 import './App.css';
 
 function App() {
- // Setting the type for RoomData
-  interface RoomData {
-    id: string;
-    name: string;
-  }
 
-  // // Setting the type for TimeSlotData to string
-  interface TimeSlotData {
-    stateid: string;
-    id: number;
-  }
 
-  const [rooms, setRooms] = useState<RoomData[]>([]);
-  const [timeSlots, setTimeSlots] = useState<TimeSlotData[]>([]);
+
+  const [rooms, setRooms] = useState([]);
+  const [timeSlots, setTimeSlots] = useState([]);
 
   useEffect (() => {
     // GET Room data
