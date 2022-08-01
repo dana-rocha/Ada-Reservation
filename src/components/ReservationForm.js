@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import CalendarPicker from './Calendar';
 
 const defaultForm = {
     date: 'Aug 1, 2022',
@@ -28,15 +29,19 @@ const NewReservation = (props) => {
           <section>
             <h2> Make a Reservation </h2>
             <div className="reservation_fields">
-              <label htmlFor="date">
-                New Reservation Date:
-                <input
-                  type="text"
-                  name="date"
-                  value={formData.date}
-                  onChange={onInputChange}
-                />
-              </label>
+                <label htmlFor="date">
+                    New Reservation Date:
+                    {/* <select>
+                        <option
+                        type="text"
+                        name="date"
+                        value={formData.date}
+                        onChange={onInputChange}
+                        />
+                    </select> */}
+                    <CalendarPicker></CalendarPicker>
+                </label>
+            
               <br />
               <label htmlFor="reservedBy">
                 Reserved By:
@@ -59,12 +64,18 @@ const NewReservation = (props) => {
               </label>
               <label htmlFor="room">
                 Reservation room:
-                <input
+                <select
                   type="text"
                   name="room"
                   value={formData.room}
                   onChange={onInputChange}
-                />
+                >
+                <option value="JohnnieJae">Johnnie Jae</option>
+                <option value="DoloresHuerta">Dolores Huerta</option>
+                <option value="EveryAdaAlum">Every Ada Alum</option>
+                <option value="LauraGomez">Laura Gomez</option>
+                <option value="MelbaRoyMouton">Melba Roy Mouton</option>
+                </select>
               </label>
               <label htmlFor="timeslot">
                 New Reservation Timeslot:
@@ -74,8 +85,8 @@ const NewReservation = (props) => {
                   value={formData.timeslot}
                   onChange={onInputChange}
                 />
-              </label>
-              <input type="submit" />
+                </label>
+                <input type="submit" />
             </div>
         </section>
         </form>
