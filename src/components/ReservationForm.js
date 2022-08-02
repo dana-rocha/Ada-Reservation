@@ -42,19 +42,21 @@ const NewReservation = (props) => {
     getTimeSlots();
   }, []);
 
+  // Setting dropdown options for Form => Rooms
   const roomComponents = rooms.map((room) => (
     <option key={room.id} value={room.id}>
       {room.name}
     </option>
   ));
 
+  // Setting dropdown options for Form => Time Slots
   const timeSlotComponents = timeSlots.map((timeSlot) => (
     <option key={timeSlot.id} value={timeSlot.stateid}>
       {timeSlot.stateid}
     </option>
   ));
 
-  // Resetting back to default form after submission
+  // Submit form & reset back to default
   const createReservation = (event) => {
     event.preventDefault();
     props.handleSubmission(formData);
@@ -103,17 +105,6 @@ const NewReservation = (props) => {
               onChange={onInputChange}
             />
           </label>
-          <label htmlFor="room">
-            Reservation room:
-            <select
-              type="text"
-              name="room"
-              value={formData.room}
-              onChange={onInputChange}
-            >
-              {roomComponents}
-            </select>
-          </label>
           <label htmlFor="timeslot">
             New Reservation Timeslot:
             <select
@@ -123,6 +114,17 @@ const NewReservation = (props) => {
               onChange={onInputChange}
             >
               {timeSlotComponents}
+            </select>
+          </label>
+          <label htmlFor="room">
+            Reservation room:
+            <select
+              type="text"
+              name="room"
+              value={formData.room}
+              onChange={onInputChange}
+            >
+              {roomComponents}
             </select>
           </label>
           <input type="submit" />
