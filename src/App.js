@@ -1,11 +1,11 @@
 import React from "react";
 import adaLogo from "./images/logo.png";
 import NewReservation from "./components/ReservationForm";
-import { doc, addDoc } from "@firebase/firestore";
+import { addDoc } from "@firebase/firestore";
 import {
   reservationsCollection,
-  roomsCollection,
-  usersCollection,
+  // roomsCollection,
+  // usersCollection,
 } from "./firebase-config";
 import "./App.css";
 

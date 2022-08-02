@@ -67,6 +67,11 @@ const NewReservation = (props) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
+  const alertFunction = (event) => {
+    event.preventDefault();
+    alert('Success!');
+  }
+
   return (
     <form onSubmit={createReservation}>
       <section>
@@ -127,7 +132,7 @@ const NewReservation = (props) => {
               {roomComponents}
             </select>
           </label>
-          <input type="submit" />
+          <input type="submit" onClick={alertFunction}/>
         </div>
       </section>
     </form>
