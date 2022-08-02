@@ -69,8 +69,8 @@ const NewReservation = (props) => {
 
   const alertFunction = (event) => {
     event.preventDefault();
-    alert('Success!');
-  }
+    alert("Success!");
+  };
 
   return (
     <form onSubmit={createReservation}>
@@ -89,7 +89,6 @@ const NewReservation = (props) => {
                     </select> */}
             <CalendarPicker />
           </label>
-
           <br />
           <label htmlFor="reservedBy">
             Reserved By:
@@ -110,6 +109,7 @@ const NewReservation = (props) => {
               onChange={onInputChange}
             />
           </label>
+          <br />
           <label htmlFor="timeslot">
             New Reservation Timeslot:
             <select
@@ -121,6 +121,7 @@ const NewReservation = (props) => {
               {timeSlotComponents}
             </select>
           </label>
+          <br />
           <label htmlFor="room">
             Reservation room:
             <select
@@ -132,7 +133,8 @@ const NewReservation = (props) => {
               {roomComponents}
             </select>
           </label>
-          <input type="submit" onClick={alertFunction}/>
+          <br />
+          <input type="submit" onClick={alertFunction} />
         </div>
       </section>
     </form>

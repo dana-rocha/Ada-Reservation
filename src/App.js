@@ -10,6 +10,7 @@ import {
 import "./App.css";
 
 function App() {
+  let msg = "";
   const makeReservation = async (NewSubmission) => {
     // Add a new document in collection "reservations"
     await addDoc(
@@ -27,6 +28,7 @@ function App() {
       // }
     );
     console.log(NewSubmission);
+    msg = `Success! You have reserved ${NewSubmission.room}!`;
   };
   return (
     <div className="App">
@@ -34,6 +36,7 @@ function App() {
         <img src={adaLogo} alt="Ada Developers Academy logo" id="adaLogo" />
       </header>
       <main>
+        <div>{msg}</div>
         <div className="reservation-form">
           <NewReservation handleSubmission={makeReservation} />
         </div>
