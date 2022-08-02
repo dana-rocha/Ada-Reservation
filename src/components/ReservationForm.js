@@ -1,37 +1,78 @@
 import React from "react";
-import { useState } from "react";
-import CalendarPicker from './Calendar';
+import { useState, useEffect } from "react";
+import CalendarPicker from "./Calendar";
+import { roomsCollection, timeSlotCollection } from "../firebase-config";
+import { getDocs, orderBy, query } from "@firebase/firestore";
 
 const defaultForm = {
-    date: 'Aug 1, 2022',
-    description: '1:1 meeting',
-    room: 'Johnnie Jae',
-    timeslot: '9:00AM-9:30AM',
-    reservedBy: 'Dana'
-}
+  date: "Aug 1, 2022",
+  description: "1:1 meeting",
+  room: "Johnnie Jae",
+  timeslot: "9:00AM-9:30AM",
+  reservedBy: "Dana",
+};
 
 const NewReservation = (props) => {
-    const [formData, setFormData] = useState(defaultForm);
+  const [formData, setFormData] = useState(defaultForm);
+  const [rooms, setRooms] = useState([]);
+  const [timeSlots, setTimeSlots] = useState([]);
 
-    // Resetting back to default form after submission
-    const createReservation = (event) => {
-        event.preventDefault();
-        props.handleSubmission(formData);
-        setFormData(defaultForm);
+  useEffect(() => {
+    // GET Room data
+    const getRooms = async () => {
+      const roomData = await getDocs(roomsCollection);
+      setRooms(
+        roomData.docs.map((roomDoc) => ({ ...roomDoc.data(), id: roomDoc.id }))
+      );
     };
+    getRooms();
 
-    const onInputChange = (event) => {
-        setFormData({...formData, [event.target.name]: event.target.value});
+    // Get TimeSlot Data
+    const getTimeSlots = async () => {
+      const sortedTimeData = await getDocs(
+        query(timeSlotCollection, orderBy("id", "asc"))
+      );
+      setTimeSlots(
+        sortedTimeData.docs.map((timeDoc) => ({
+          ...timeDoc.data(),
+          stateid: timeDoc.id,
+        }))
+      );
     };
+    getTimeSlots();
+  }, []);
 
-    return (
-        <form onSubmit={createReservation}>
-          <section>
-            <h2> Make a Reservation </h2>
-            <div className="reservation_fields">
-                <label htmlFor="date">
-                    New Reservation Date:
-                    {/* <select>
+  const roomComponents = rooms.map((room) => (
+    <option key={room.id} value={room.id}>
+      {room.name}
+    </option>
+  ));
+
+  const timeSlotComponents = timeSlots.map((timeSlot) => (
+    <option key={timeSlot.id} value={timeSlot.stateid}>
+      {timeSlot.stateid}
+    </option>
+  ));
+
+  // Resetting back to default form after submission
+  const createReservation = (event) => {
+    event.preventDefault();
+    props.handleSubmission(formData);
+    setFormData(defaultForm);
+  };
+
+  const onInputChange = (event) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
+  };
+
+  return (
+    <form onSubmit={createReservation}>
+      <section>
+        <h2> Make a Reservation </h2>
+        <div className="reservation_fields">
+          <label htmlFor="date">
+            New Reservation Date:
+            {/* <select>
                         <option
                         type="text"
                         name="date"
@@ -39,58 +80,56 @@ const NewReservation = (props) => {
                         onChange={onInputChange}
                         />
                     </select> */}
-                    <CalendarPicker></CalendarPicker>
-                </label>
-            
-              <br />
-              <label htmlFor="reservedBy">
-                Reserved By:
-                <input
-                  type="text"
-                  name="reservedBy"
-                  value={formData.reservedBy}
-                  onChange={onInputChange}
-                />
-              </label>
-              <br />
-              <label htmlFor="description">
-                New Reservation Description:
-                <input
-                  type="text"
-                  name="description"
-                  value={formData.description}
-                  onChange={onInputChange}
-                />
-              </label>
-              <label htmlFor="room">
-                Reservation room:
-                <select
-                  type="text"
-                  name="room"
-                  value={formData.room}
-                  onChange={onInputChange}
-                >
-                <option value="JohnnieJae">Johnnie Jae</option>
-                <option value="DoloresHuerta">Dolores Huerta</option>
-                <option value="EveryAdaAlum">Every Ada Alum</option>
-                <option value="LauraGomez">Laura Gomez</option>
-                <option value="MelbaRoyMouton">Melba Roy Mouton</option>
-                </select>
-              </label>
-              <label htmlFor="timeslot">
-                New Reservation Timeslot:
-                <input
-                  type="text"
-                  name="timeslot"
-                  value={formData.timeslot}
-                  onChange={onInputChange}
-                />
-                </label>
-                <input type="submit" />
-            </div>
-        </section>
-        </form>
-    );
-}
+            <CalendarPicker />
+          </label>
+
+          <br />
+          <label htmlFor="reservedBy">
+            Reserved By:
+            <input
+              type="text"
+              name="reservedBy"
+              value={formData.reservedBy}
+              onChange={onInputChange}
+            />
+          </label>
+          <br />
+          <label htmlFor="description">
+            New Reservation Description:
+            <input
+              type="text"
+              name="description"
+              value={formData.description}
+              onChange={onInputChange}
+            />
+          </label>
+          <label htmlFor="room">
+            Reservation room:
+            <select
+              type="text"
+              name="room"
+              value={formData.room}
+              onChange={onInputChange}
+            >
+              {roomComponents}
+            </select>
+          </label>
+          <label htmlFor="timeslot">
+            New Reservation Timeslot:
+            <select
+              type="text"
+              name="timeslot"
+              value={formData.timeslot}
+              onChange={onInputChange}
+            >
+              {timeSlotComponents}
+            </select>
+          </label>
+          <input type="submit" />
+        </div>
+      </section>
+    </form>
+  );
+};
 
 export default NewReservation;
