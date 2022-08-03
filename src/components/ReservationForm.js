@@ -61,16 +61,13 @@ const NewReservation = (props) => {
     event.preventDefault();
     props.handleSubmission(formData);
     setFormData(defaultForm);
+    alert('Success!!');
   };
 
   const onInputChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
-  const alertFunction = (event) => {
-    event.preventDefault();
-    alert("Success!");
-  };
 
   return (
     <form onSubmit={createReservation}>
@@ -79,15 +76,7 @@ const NewReservation = (props) => {
         <div className="reservation_fields">
           <label htmlFor="date">
             New Reservation Date:
-            {/* <select>
-                        <option
-                        type="text"
-                        name="date"
-                        value={formData.date}
-                        onChange={onInputChange}
-                        />
-                    </select> */}
-            <CalendarPicker />
+            <CalendarPicker/>
           </label>
           <br />
           <label htmlFor="reservedBy">
@@ -133,8 +122,7 @@ const NewReservation = (props) => {
               {roomComponents}
             </select>
           </label>
-          <br />
-          <input type="submit" onClick={alertFunction} />
+          <input type="submit"/>
         </div>
       </section>
     </form>

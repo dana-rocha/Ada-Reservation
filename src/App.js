@@ -2,11 +2,7 @@ import React from "react";
 import adaLogo from "./images/logo.png";
 import NewReservation from "./components/ReservationForm";
 import { addDoc } from "@firebase/firestore";
-import {
-  reservationsCollection,
-  // roomsCollection,
-  // usersCollection,
-} from "./firebase-config";
+import { reservationsCollection } from "./firebase-config";
 import "./App.css";
 
 function App() {
@@ -16,16 +12,6 @@ function App() {
     await addDoc(
       reservationsCollection,
       NewSubmission
-      //   {
-      //   // NewSubmission
-      //   date: NewSubmission.date,
-      //   description: NewSubmission.description,
-      //   reservedBy: NewSubmission.reservedBy,
-      //   room: doc(roomsCollection / NewSubmission.room),
-      //   timeslot: NewSubmission.timeslot,
-      //   // room: string(id) => firestore.roomcollection/string(id),
-      //   // timeslot: string(stateid) => firestore.timeslotcollection/string(stateid)
-      // }
     );
     console.log(NewSubmission);
     msg = `Success! You have reserved ${NewSubmission.room}!`;
