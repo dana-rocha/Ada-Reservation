@@ -5,11 +5,11 @@ import { roomsCollection, timeSlotCollection } from "../firebase-config";
 import { getDocs, orderBy, query } from "@firebase/firestore";
 
 const defaultForm = {
-  date: "Aug 1, 2022",
-  description: "1:1 meeting",
-  room: "Johnnie Jae",
-  timeslot: "9:00AM-9:30AM",
-  reservedBy: "Dana",
+  date: "",
+  description: "",
+  room: "",
+  timeslot: "",
+  reservedBy: "",
 };
 
 const NewReservation = (props) => {
@@ -61,13 +61,13 @@ const NewReservation = (props) => {
     event.preventDefault();
     props.handleSubmission(formData);
     setFormData(defaultForm);
-    alert('Success!!');
+    alert("Success!!");
   };
 
   const onInputChange = (event) => {
+    console.log("Inside onInputChange");
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
-
 
   return (
     <form onSubmit={createReservation}>
@@ -76,7 +76,11 @@ const NewReservation = (props) => {
         <div className="reservation_fields">
           <label htmlFor="date">
             New Reservation Date:
-            <CalendarPicker/>
+            <CalendarPicker
+              name="date"
+              value={props.selected}
+              onOutsideClick={onInputChange}
+            />
           </label>
           <br />
           <label htmlFor="reservedBy">
@@ -107,6 +111,7 @@ const NewReservation = (props) => {
               value={formData.timeslot}
               onChange={onInputChange}
             >
+              <option>Select a time slot:</option>
               {timeSlotComponents}
             </select>
           </label>
@@ -119,10 +124,11 @@ const NewReservation = (props) => {
               value={formData.room}
               onChange={onInputChange}
             >
+              <option>Select a room:</option>
               {roomComponents}
             </select>
           </label>
-          <input type="submit"/>
+          <input type="submit" />
         </div>
       </section>
     </form>
