@@ -8,8 +8,8 @@ import "./App.css";
 function App() {
   const makeReservation = async (NewSubmission) => {
     // Add a new document in collection "reservations"
-    await addDoc(reservationsCollection, NewSubmission);
-    console.log(NewSubmission);
+    const docRef = await addDoc(reservationsCollection, NewSubmission);
+    console.log("New Reservation", docRef.id, NewSubmission);
   };
   return (
     <div className="App">

@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import CalendarPicker from "./Calendar";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { roomsCollection, timeSlotCollection } from "../firebase-config";
 import { getDocs, orderBy, query } from "@firebase/firestore";
 
@@ -14,6 +15,7 @@ const defaultForm = {
 
 const NewReservation = (props) => {
   const [formData, setFormData] = useState(defaultForm);
+  const [startDate, setStartDate] = useState(new Date());
   const [rooms, setRooms] = useState([]);
   const [timeSlots, setTimeSlots] = useState([]);
 
@@ -60,12 +62,11 @@ const NewReservation = (props) => {
   const createReservation = (event) => {
     event.preventDefault();
     props.handleSubmission(formData);
+    alert(`Success! You have reserved ${formData.room}!`);
     setFormData(defaultForm);
-    alert("Success!!");
   };
 
   const onInputChange = (event) => {
-    console.log("Inside onInputChange");
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
@@ -76,10 +77,13 @@ const NewReservation = (props) => {
         <div className="reservation_fields">
           <label htmlFor="date">
             New Reservation Date:
-            <CalendarPicker
-              name="date"
-              value={props.selected}
-              onOutsideClick={onInputChange}
+            <DatePicker
+              selected={startDate}
+              onChange={(date) => {
+                setStartDate(date);
+                setFormData({ ...formData, date: date });
+              }}
+              inline
             />
           </label>
           <br />
@@ -94,7 +98,7 @@ const NewReservation = (props) => {
           </label>
           <br />
           <label htmlFor="description">
-            New Reservation Description:
+            Description:
             <input
               type="text"
               name="description"
@@ -104,7 +108,7 @@ const NewReservation = (props) => {
           </label>
           <br />
           <label htmlFor="timeslot">
-            New Reservation Timeslot:
+            Timeslot:
             <select
               type="text"
               name="timeslot"
@@ -117,7 +121,7 @@ const NewReservation = (props) => {
           </label>
           <br />
           <label htmlFor="room">
-            Reservation room:
+            Room:
             <select
               type="text"
               name="room"
