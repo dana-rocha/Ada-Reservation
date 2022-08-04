@@ -1,0 +1,12 @@
+.row {
+    display: flex;
+}
+
+.column {
+    border: 1px solid red;
+    flex: 50%;
+    height: auto;
+    min-height: 100vh;
+    justify-self: center;
+}
+

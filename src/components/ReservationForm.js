@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { roomsCollection, timeSlotCollection } from "../firebase-config";
 import { getDocs, orderBy, query } from "@firebase/firestore";
+import "./ReservationForm.css";
 
 const defaultForm = {
   date: "",
@@ -72,67 +73,70 @@ const NewReservation = (props) => {
 
   return (
     <form onSubmit={createReservation}>
-      <section>
-        <h2> Make a Reservation </h2>
-        <div className="reservation_fields">
-          <label htmlFor="date">
-            New Reservation Date:
-            <DatePicker
-              selected={startDate}
-              onChange={(date) => {
-                setStartDate(date);
-                setFormData({ ...formData, date: date });
-              }}
-              inline
-            />
-          </label>
-          <br />
-          <label htmlFor="reservedBy">
-            Reserved By:
-            <input
-              type="text"
-              name="reservedBy"
-              value={formData.reservedBy}
-              onChange={onInputChange}
-            />
-          </label>
-          <br />
-          <label htmlFor="description">
-            Description:
-            <input
-              type="text"
-              name="description"
-              value={formData.description}
-              onChange={onInputChange}
-            />
-          </label>
-          <br />
-          <label htmlFor="timeslot">
-            Timeslot:
-            <select
-              type="text"
-              name="timeslot"
-              value={formData.timeslot}
-              onChange={onInputChange}
-            >
-              <option>Select a time slot:</option>
-              {timeSlotComponents}
-            </select>
-          </label>
-          <br />
-          <label htmlFor="room">
-            Room:
-            <select
-              type="text"
-              name="room"
-              value={formData.room}
-              onChange={onInputChange}
-            >
-              <option>Select a room:</option>
-              {roomComponents}
-            </select>
-          </label>
-          <input type="submit" />
+      <section id="reservationForm">
+        <div className="row">
+          <div className="column">
+            <h2> Make a Reservation </h2>
+            <label htmlFor="date" className="calendar">
+              New Reservation Date:
+              <DatePicker
+                selected={startDate}
+                onChange={(date) => {
+                  setStartDate(date);
+                  setFormData({ ...formData, date: date });
+                }}
+                inline
+              />
+            </label>
+          </div>
+          <div className="column">
+            <label htmlFor="reservedBy" className="form-right">
+              Reserved By:
+              <input
+                type="text"
+                name="reservedBy"
+                value={formData.reservedBy}
+                onChange={onInputChange}
+              />
+            </label>
+            <br />
+            <label htmlFor="description" className="form-right">
+              Description:
+              <input
+                type="text"
+                name="description"
+                value={formData.description}
+                onChange={onInputChange}
+              />
+            </label>
+            <br />
+            <label htmlFor="timeslot" className="form-right">
+              Timeslot:
+              <select
+                type="text"
+                name="timeslot"
+                value={formData.timeslot}
+                onChange={onInputChange}
+              >
+                <option>Select a time slot:</option>
+                {timeSlotComponents}
+              </select>
+            </label>
+            <br />
+            <label htmlFor="room" className="form-right">
+              Room:
+              <select
+                type="text"
+                name="room"
+                value={formData.room}
+                onChange={onInputChange}
+              >
+                <option>Select a room:</option>
+                {roomComponents}
+              </select>
+            </label>
+            <input type="submit" />
+          </div>
         </div>
       </section>
     </form>
