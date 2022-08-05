@@ -6,6 +6,9 @@ import { addDoc } from "@firebase/firestore";
 import { reservationsCollection } from "./firebase-config";
 import "./App.css";
 import LoginComponent from "./components/Login";
+import UserDash from "./components/UserDash";
+import Register from "./components/Register";
+import Reset from "./components/Reset";
 
 function App() {
   return (
@@ -13,9 +16,6 @@ function App() {
       <header>
         <img src={adaLogo} alt="Ada Developers Academy logo" id="adaLogo" />
         <nav id="navbar">
-          <Link to="/" className="links">
-            Login
-          </Link>
           <Link to="/home" className="links">
             Home
           </Link>
@@ -29,6 +29,8 @@ function App() {
           <Route path="/" element={<Login/>} component={Login}/>
           <Route path="/home" element={<Home/>} />
           <Route path="/user" element={<User/>} />
+          <Route path="/register" element={<Register/>} />
+          <Route path="/reset" element={<Reset/>} />
         </Routes>
       </main>
       <footer>© 2022 Ada C17 alum grads - Dana Rocha & Elaine Smith</footer>
@@ -62,6 +64,7 @@ function User() {
   return (
     <>
       <p>USER INFO PAGE</p>
+      <UserDash/>
     </>
   );
 }
