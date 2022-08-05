@@ -2,3 +2,7 @@ node_modules
 .env
 .DS_Store
 src/.DS_Store
+.firebase
+.firebaserc
+build/
+firebase.json

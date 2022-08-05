@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.2.1",
     "dependencies": "^0.0.1",
     "firebase": "^9.9.1",
+    "firebase-tools": "^11.4.2",
     "react": "^18.2.0",
     "react-datepicker": "^4.8.0",
     "react-dom": "^18.2.0",
