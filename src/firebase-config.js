@@ -29,8 +29,26 @@ export const timeSlotCollection = createCollection("timeslots");
 export const reservationsCollection = createCollection("reservations");
 
 
-// Authentication
+// Initialize Firebase Authentication
 const auth = getAuth(firebaseApp);
+
+// Registering a new user with email and password
+const registerWithEmailAndPassword = async(name, userEmail, userPassword) => {
+  try {
+    const response = await createUserWithEmailAndPassword(auth, userEmail, userPassword);
+    const newUser = response.user;
+
+    await addDoc(usersCollection, {
+      uid: newUser.uid,
+      name,
+      authProvider: "local",
+      userEmail,
+    });
+  } catch (error) {
+    console.error(error);
+    alert("Cannot create a new user.");
+  }
+};
 
 // Google Authentication
 const googleProvider = new GoogleAuthProvider();
@@ -68,24 +86,6 @@ const logInWithEmailAndPassword = async (userEmail, userPassword) => {
   } catch (error) {
     console.error(error);
     alert("Cannot log in.")
-  }
-};
-
-// Registering a new user with email and password
-const registerWithEmailAndPassword = async(name, userEmail, userPassword) => {
-  try {
-    const response = await createUserWithEmailAndPassword(auth, userEmail, userPassword);
-    const newUser = response.user;
-
-    await addDoc(usersCollection, {
-      uid: newUser.uid,
-      name,
-      authProvider: "local",
-      userEmail,
-    });
-  } catch (error) {
-    console.error(error);
-    alert("Cannot create a new user.");
   }
 };
 
