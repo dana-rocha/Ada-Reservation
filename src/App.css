@@ -37,6 +37,10 @@ header {
   color:#E80F5E;
 }
 
+#ada-pic {
+  height: 300px;
+}
+
 main {
   position: relative;
 }

@@ -1,14 +1,13 @@
 import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
-import adaLogo from "./images/logo.png";
-import NewReservation from "./components/ReservationForm";
 import { addDoc } from "@firebase/firestore";
 import { reservationsCollection } from "./firebase-config";
-import "./App.css";
+import NewReservation from "./components/ReservationForm";
 import LoginComponent from "./components/Login";
 import UserDash from "./components/UserDash";
-import Register from "./components/Register";
-import Reset from "./components/Reset";
+import "./App.css";
+import AdaPic from "./images/web_pic.jpg";
+import adaLogo from "./images/logo.png";
 
 function App() {
   return (
@@ -29,8 +28,6 @@ function App() {
           <Route path="/" element={<Login/>} component={Login}/>
           <Route path="/home" element={<Home/>} />
           <Route path="/user" element={<User/>} />
-          <Route path="/register" element={<Register/>} />
-          <Route path="/reset" element={<Reset/>} />
         </Routes>
       </main>
       <footer>© 2022 Ada C17 alum grads - Dana Rocha & Elaine Smith</footer>
@@ -41,6 +38,7 @@ function App() {
 function Login() {
   return (
     <>
+      <img src={AdaPic} alt="Changing the face of tech." id="ada-pic"/>
       <LoginComponent/>
     </>
   );

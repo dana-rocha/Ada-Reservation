@@ -1,11 +1,12 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
-// import "react-datepicker/dist/react-datepicker.css";
-import { roomsCollection, timeSlotCollection } from "../firebase-config";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useNavigate } from "react-router-dom";
+import { roomsCollection, timeSlotCollection, auth } from "../firebase-config";
 import { getDocs, orderBy, query } from "@firebase/firestore";
 import "./ReservationForm.css";
 import "./Calendar.css";
+// import "react-datepicker/dist/react-datepicker.css";
 
 const defaultForm = {
   date: "",
@@ -16,6 +17,15 @@ const defaultForm = {
 };
 
 const NewReservation = (props) => {
+  const [user, loading] = useAuthState(auth);
+  const navigate = useNavigate();
+  
+  // User can't access home and user page without login
+  useEffect(() => {
+    if (loading) return;
+    if (!user) return navigate("/");
+  }, [user, loading]);
+
   const [formData, setFormData] = useState(defaultForm);
   const [startDate, setStartDate] = useState(new Date());
   const [rooms, setRooms] = useState([]);

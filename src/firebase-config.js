@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, query, where, addDoc, getDocs } from "@firebase/firestore";
-import { GoogleAuthProvider, getAuth, signInWithEmailAndPassword, 
-  signInWithPopup, createUserWithEmailAndPassword, sendPasswordResetEmail, 
+import { GoogleAuthProvider, getAuth,
+  signInWithPopup, sendPasswordResetEmail, 
   signOut} from "firebase/auth";
 
 // Init the firebase app
@@ -32,24 +32,6 @@ export const reservationsCollection = createCollection("reservations");
 // Initialize Firebase Authentication
 const auth = getAuth(firebaseApp);
 
-// Registering a new user with email and password
-const registerWithEmailAndPassword = async(name, userEmail, userPassword) => {
-  try {
-    const response = await createUserWithEmailAndPassword(auth, userEmail, userPassword);
-    const newUser = response.user;
-
-    await addDoc(usersCollection, {
-      uid: newUser.uid,
-      name,
-      authProvider: "local",
-      userEmail,
-    });
-  } catch (error) {
-    console.error(error);
-    alert("Cannot create a new user.");
-  }
-};
-
 // Google Authentication
 const googleProvider = new GoogleAuthProvider();
 
@@ -79,16 +61,6 @@ const signInWithGoogle = async () => {
   }
 };
 
-// Signing in with using an email and password
-const logInWithEmailAndPassword = async (userEmail, userPassword) => {
-  try {
-    await signInWithEmailAndPassword(auth, userEmail, userPassword);
-  } catch (error) {
-    console.error(error);
-    alert("Cannot log in.")
-  }
-};
-
 // Send a password reset link to user's email
 const sendPasswordResetLink = async (userEmail) => {
   try {
@@ -106,6 +78,6 @@ const logout = () => {
 };
 
 export {
-  auth, signInWithGoogle, signInWithEmailAndPassword, logout,
-  logInWithEmailAndPassword, registerWithEmailAndPassword, sendPasswordResetLink,
+  auth, signInWithGoogle, logout,
+  sendPasswordResetLink,
 };
