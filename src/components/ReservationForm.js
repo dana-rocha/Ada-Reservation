@@ -1,10 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+// import "react-datepicker/dist/react-datepicker.css";
 import { roomsCollection, timeSlotCollection } from "../firebase-config";
 import { getDocs, orderBy, query } from "@firebase/firestore";
 import "./ReservationForm.css";
+import "./Calendar.css";
 
 const defaultForm = {
   date: "",
@@ -74,11 +75,11 @@ const NewReservation = (props) => {
   return (
     <form onSubmit={createReservation}>
       <section id="reservationForm">
+        <h2> Make a Reservation </h2>
         <div className="row">
           <div className="column">
-            <h2> Make a Reservation </h2>
             <label htmlFor="date" className="calendar">
-              New Reservation Date:
+              Select a Date:
               <DatePicker
                 selected={startDate}
                 onChange={(date) => {

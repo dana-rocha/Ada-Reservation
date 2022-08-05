@@ -39,6 +39,11 @@ function Login() {
   return (
     <>
       <p>LOGIN PAGE</p>
+      <img
+        src="http://images6.fanpop.com/image/photos/35000000/BMO-adventure-time-with-finn-and-jake-35074766-500-545.jpg"
+        alt="BMO"
+      />
+      <p>UNDER CONSTRUCTION</p>
     </>
   );
 }
@@ -60,6 +65,11 @@ function User() {
   return (
     <>
       <p>USER INFO PAGE</p>
+      <img
+        src="https://i.pinimg.com/originals/50/31/88/5031889246a247ecdfbe97bad7513591.png"
+        alt="BMO"
+      />
+      <p>UNDER CONSTRUCTION</p>
     </>
   );
 }
