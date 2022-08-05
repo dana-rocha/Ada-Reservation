@@ -5,6 +5,10 @@ import NewReservation from "./components/ReservationForm";
 import { addDoc } from "@firebase/firestore";
 import { reservationsCollection } from "./firebase-config";
 import "./App.css";
+import LoginComponent from "./components/Login";
+import UserDash from "./components/UserDash";
+import Register from "./components/Register";
+import Reset from "./components/Reset";
 
 function App() {
   return (
@@ -12,9 +16,6 @@ function App() {
       <header>
         <img src={adaLogo} alt="Ada Developers Academy logo" id="adaLogo" />
         <nav id="navbar">
-          <Link to="/" className="links">
-            Login
-          </Link>
           <Link to="/home" className="links">
             Home
           </Link>
@@ -25,9 +26,11 @@ function App() {
       </header>
       <main>
         <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/user" element={<User />} />
+          <Route path="/" element={<Login/>} component={Login}/>
+          <Route path="/home" element={<Home/>} />
+          <Route path="/user" element={<User/>} />
+          <Route path="/register" element={<Register/>} />
+          <Route path="/reset" element={<Reset/>} />
         </Routes>
       </main>
       <footer>© 2022 Ada C17 alum grads - Dana Rocha & Elaine Smith</footer>
@@ -38,12 +41,7 @@ function App() {
 function Login() {
   return (
     <>
-      <p>LOGIN PAGE</p>
-      <img
-        src="http://images6.fanpop.com/image/photos/35000000/BMO-adventure-time-with-finn-and-jake-35074766-500-545.jpg"
-        alt="BMO"
-      />
-      <p>UNDER CONSTRUCTION</p>
+      <LoginComponent/>
     </>
   );
 }
@@ -64,12 +62,7 @@ function Home() {
 function User() {
   return (
     <>
-      <p>USER INFO PAGE</p>
-      <img
-        src="https://i.pinimg.com/originals/50/31/88/5031889246a247ecdfbe97bad7513591.png"
-        alt="BMO"
-      />
-      <p>UNDER CONSTRUCTION</p>
+      <UserDash/>
     </>
   );
 }
