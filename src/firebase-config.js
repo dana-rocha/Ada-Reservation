@@ -81,7 +81,7 @@ const registerWithEmailAndPassword = async(name, userEmail, userPassword) => {
       uid: newUser.uid,
       name,
       authProvider: "local",
-      email,
+      userEmail,
     });
   } catch (error) {
     console.error(error);

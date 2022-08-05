@@ -5,6 +5,7 @@ import NewReservation from "./components/ReservationForm";
 import { addDoc } from "@firebase/firestore";
 import { reservationsCollection } from "./firebase-config";
 import "./App.css";
+import Login from "./components/Login";
 
 function App() {
   return (
@@ -25,9 +26,9 @@ function App() {
       </header>
       <main>
         <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/user" element={<User />} />
+          <Route path="/" element={<Login/>} component={Login}/>
+          <Route path="/home" element={<Home/>} />
+          <Route path="/user" element={<User/>} />
         </Routes>
       </main>
       <footer>© 2022 Ada C17 alum grads - Dana Rocha & Elaine Smith</footer>
