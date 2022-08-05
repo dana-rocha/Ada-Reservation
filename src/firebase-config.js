@@ -89,6 +89,17 @@ const logInWithEmailAndPassword = async (userEmail, userPassword) => {
   }
 };
 
+// Send a password reset link to user's email
+const sendPasswordResetLink = async (userEmail) => {
+  try {
+    await sendPasswordResetEmail(auth, userEmail);
+    alert("Password reset link sent.")
+  } catch (errorMsg) {
+    console.error(errorMsg);
+    alert("Reset link cannot be sent to this email.")
+  }
+}
+
 // Logout function
 const logout = () => {
   signOut(auth);
@@ -96,5 +107,5 @@ const logout = () => {
 
 export {
   auth, signInWithGoogle, signInWithEmailAndPassword, logout,
-  logInWithEmailAndPassword, registerWithEmailAndPassword,
+  logInWithEmailAndPassword, registerWithEmailAndPassword, sendPasswordResetLink,
 };

@@ -5,7 +5,7 @@ import NewReservation from "./components/ReservationForm";
 import { addDoc } from "@firebase/firestore";
 import { reservationsCollection } from "./firebase-config";
 import "./App.css";
-import Login from "./components/Login";
+import LoginComponent from "./components/Login";
 
 function App() {
   return (
@@ -40,6 +40,7 @@ function Login() {
   return (
     <>
       <p>LOGIN PAGE</p>
+      <LoginComponent/>
     </>
   );
 }
