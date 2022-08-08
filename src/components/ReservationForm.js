@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
+import getDay from "date-fns/getDay";
 import { roomsCollection, timeSlotCollection, auth } from "../firebase-config";
 import { getDocs, orderBy, query } from "@firebase/firestore";
 import "./ReservationForm.css";
@@ -82,6 +83,11 @@ const NewReservation = (props) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
+  const isWeekday = (date) => {
+    const day = getDay(date);
+    return day !== 0 && day !== 6;
+  };
+
   return (
     <form onSubmit={createReservation}>
       <section id="reservationForm">
@@ -96,6 +102,7 @@ const NewReservation = (props) => {
                   setStartDate(date);
                   setFormData({ ...formData, date: date });
                 }}
+                filterDate={isWeekday}
                 inline
               />
             </label>
