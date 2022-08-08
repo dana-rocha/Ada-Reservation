@@ -446,7 +446,7 @@
 .react-datepicker__quarter--selected:hover,
 .react-datepicker__quarter--in-selecting-range:hover,
 .react-datepicker__quarter--in-range:hover {
-  background-color: #1d5d90;
+  background-color: #0AA3C2;
 }
 .react-datepicker__month--disabled,
 .react-datepicker__quarter--disabled {

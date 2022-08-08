@@ -1,10 +1,26 @@
+/* #reservationForm, .row, .column, ul, li {
+    border: 1px solid red;
+} */
+
 .row {
     display: flex;
 }
 
 .column {
-    /* border: 1px solid red; */
     flex: 50%;
     height: auto;
     min-height: 100vh;
+}
+
+ul {
+    display:-moz-inline-stack;
+    display:inline-block;
+    zoom:1;
+    *display:inline;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+li {
+    text-align: left;
 }

@@ -20,7 +20,7 @@ const defaultForm = {
 const NewReservation = (props) => {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
-  
+
   // User can't access home and user page without login
   useEffect(() => {
     if (loading) return;
@@ -92,6 +92,14 @@ const NewReservation = (props) => {
     <form onSubmit={createReservation}>
       <section id="reservationForm">
         <h2> Make a Reservation </h2>
+        <ul>
+          <li>Reservation blocks are 30 mins long from 9AM - 5PM</li>
+          <li>Max reservation is 1 hr</li>
+          <li>
+            If no one has room after you come your time, can extend reservation
+            for 1 hour
+          </li>
+        </ul>
         <div className="row">
           <div className="column">
             <label htmlFor="date" className="calendar">
