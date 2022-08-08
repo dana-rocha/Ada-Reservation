@@ -5,4 +5,3 @@ src/.DS_Store
 .firebase
 .firebaserc
 build/
-firebase.json
