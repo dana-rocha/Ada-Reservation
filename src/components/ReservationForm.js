@@ -87,11 +87,11 @@ const NewReservation = (props) => {
   ));
 
   // Reservation data
-  const reservationComponents = reservations.map((res) => (
-    <p>
-      {res.id}, {res.date}, {res.timeslot}, {res.room}{" "}
-    </p>
-  ));
+  const reservationComponents = reservations.map((res) => {
+    let datee = new Date(res.date);
+    let newDatee = datee.getDate();
+    return console.log(res.id, res.room, res.timeslot, newDatee);
+  });
 
   // Submit form & reset back to default
   const createReservation = (event) => {
@@ -133,7 +133,6 @@ const NewReservation = (props) => {
             for 1 hour
           </li>
         </ul>
-        {reservationComponents}
         <div className="row">
           <div className="column">
             <label htmlFor="date" className="calendar">
