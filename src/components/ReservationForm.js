@@ -3,7 +3,12 @@ import DatePicker from "react-datepicker";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import getDay from "date-fns/getDay";
-import { roomsCollection, timeSlotCollection, auth } from "../firebase-config";
+import {
+  roomsCollection,
+  timeSlotCollection,
+  reservationsCollection,
+  auth,
+} from "../firebase-config";
 import { getDocs, orderBy, query } from "@firebase/firestore";
 import "./ReservationForm.css";
 import "./Calendar.css";
@@ -31,6 +36,7 @@ const NewReservation = (props) => {
   const [startDate, setStartDate] = useState(new Date());
   const [rooms, setRooms] = useState([]);
   const [timeSlots, setTimeSlots] = useState([]);
+  const [reservations, setReservations] = useState([]);
 
   useEffect(() => {
     // GET Room data
@@ -55,6 +61,15 @@ const NewReservation = (props) => {
       );
     };
     getTimeSlots();
+
+    // GET Reservation data
+    const getReservations = async () => {
+      const resData = await getDocs(reservationsCollection);
+      setReservations(
+        resData.docs.map((resDoc) => ({ ...resDoc.data(), id: resDoc.id }))
+      );
+    };
+    getReservations();
   }, []);
 
   // Setting dropdown options for Form => Rooms
@@ -71,16 +86,34 @@ const NewReservation = (props) => {
     </option>
   ));
 
+  // Reservation data
+  const reservationComponents = reservations.map((res) => (
+    <p>
+      {res.id}, {res.date}, {res.timeslot}, {res.room}{" "}
+    </p>
+  ));
+
   // Submit form & reset back to default
   const createReservation = (event) => {
     event.preventDefault();
     props.handleSubmission(formData);
+    // Validate that reservation is valid
+    if (!isValid) {
+      alert("Sorry, cannot reserve room.");
+    }
     alert(`Success! You have reserved ${formData.room}!`);
     setFormData(defaultForm);
   };
 
   const onInputChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
+  };
+
+  const isValid = async () => {
+    // Display each reservation
+    console.log("inside isValid");
+    // compare formData w/ reservations
+    // if timeslot & room & date match => isValid = false
   };
 
   const isWeekday = (date) => {
@@ -100,6 +133,7 @@ const NewReservation = (props) => {
             for 1 hour
           </li>
         </ul>
+        {reservationComponents}
         <div className="row">
           <div className="column">
             <label htmlFor="date" className="calendar">
