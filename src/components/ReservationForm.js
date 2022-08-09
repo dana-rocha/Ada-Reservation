@@ -95,43 +95,61 @@ const NewReservation = (props) => {
   const isValid = async () => {
     // Display each reservation
     console.log("inside isValid");
+
+    // let valid = false;
+
     // compare formData w/ reservations
-    // const queryRes = await getDocs(query(reservationsCollection, where("date", "==", formData.date)));
-    // const queryRes = query(reservationsCollection, where("date", "==", formData.date));
-    const queryRes = query(reservationsCollection, where("room", "==", formData.room));
-    const queryResDocs = await getDocs(queryRes);
+    const queryRes = await getDocs(query(reservationsCollection, where("room", "==", formData.room)));
 
-    // const reservationArray = []
-
-    // for (const doc of queryResDocs) {
-    //   reservationArray.push(doc)
-    // }
-
-    queryResDocs.docs.map((doc) => {
+    const resMap = queryRes.docs.map((doc) => {
       // date in data is returning seconds
-      return console.log(doc.id, '=>', new Date(doc.data()["date"].seconds * 1000))
+      // console.log(doc.data()["timeslot"])
+      // console.log(doc.data()["timeslot"] === formData.timeslot)
+      if (doc.data()["timeslot"] === formData.timeslot) {
+        return false;
+      } else {
+        return true;
+      }
+      // return (console.log({
+      //   id: doc.id,
+      //   date: new Date(doc.data()["date"].seconds * 1000),
+      //   room: doc.data()["room"],
+      //   timeslot: doc.data()["timeslot"],
+      // })
+      // )
     })
 
-    // console.log(queryResDocs);
-    // formDate.date returns a normal date??
-    // console.log(formData.date)
-    // console.log(reservationArray);
-    // return (false);
-    // if timeslot & room & date match => isValid = false
+    return resMap
+    // return false;
+    // if (doc.data()["timeslot"] === formData.timeslot) {
+    //   return false;
+    // } else {
+    //   return true;
+    // }
+
   };
-  const x = false;
+  // const x = false;
   // Submit form & reset back to default
   const createReservation = (event) => {
     event.preventDefault();
-    // Validate that reservation is valid
-    if (x === false) {
-      isValid();
-      alert("Sorry, cannot reserve room.");
-      return (console.log("inside create reservation function"));
-    } else {
-      props.handleSubmission(formData);
-      alert(`Success! You have reserved ${formData.room.name}!`);
-    }
+    let savedResult;
+
+    let validCheck = isValid()
+      .then((result) => {
+        savedResult = result.every(Boolean)
+        // console.log(result)
+        console.log(savedResult)
+        // Validate that reservation is valid
+        if (savedResult === false) {
+          // isValid();
+          alert("Sorry, cannot reserve room.");
+          return (console.log("inside create reservation function"));
+        } else {
+          props.handleSubmission(formData);
+          alert(`Success! You have reserved ${formData.room.name}!`);
+        }
+      }
+      )
     setFormData(defaultForm);
   };
 
