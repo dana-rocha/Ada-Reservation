@@ -9,7 +9,7 @@ import {
   reservationsCollection,
   auth,
 } from "../firebase-config";
-import { getDocs, orderBy, query } from "@firebase/firestore";
+import { getDocs, orderBy, query, where } from "@firebase/firestore";
 import "./ReservationForm.css";
 import "./Calendar.css";
 // import "react-datepicker/dist/react-datepicker.css";
@@ -87,20 +87,40 @@ const NewReservation = (props) => {
   ));
 
   // Reservation data
-  const reservationComponents = reservations.map((res) => {
-    let myDate = res.date;
-    return console.log(new Date(myDate.seconds * 1000));
-  });
+  // const reservationComponents = reservations.map((res) => {
+  //   let myDate = res.date;
+  //   return console.log(new Date(myDate.seconds * 1000), res.room, res.timeslot, res.reservedBy);
+  // });
 
+  const isValid = async () => {
+    // Display each reservation
+    console.log("inside isValid");
+    // compare formData w/ reservations
+    // const queryRes = await getDocs(query(reservationsCollection, where("date", "==", formData.date)));
+    // const queryRes = query(reservationsCollection, where("date", "==", formData.date));
+    const queryRes = query(reservationsCollection, where("room", "==", formData.room));
+    const queryResDocs = await getDocs(queryRes);
+    queryResDocs.docs.map((doc) => {
+      return console.log(doc.id, '=>', doc.data())
+    })
+    // console.log(queryResDocs);
+    console.log(formData.date)
+    // return (false);
+    // if timeslot & room & date match => isValid = false
+  };
+  const x = false;
   // Submit form & reset back to default
   const createReservation = (event) => {
     event.preventDefault();
-    props.handleSubmission(formData);
     // Validate that reservation is valid
-    if (!isValid) {
+    if (x === false) {
+      isValid();
       alert("Sorry, cannot reserve room.");
+      return (console.log("inside create reservation function"));
+    } else {
+      props.handleSubmission(formData);
+      alert(`Success! You have reserved ${formData.room.name}!`);
     }
-    alert(`Success! You have reserved ${formData.room}!`);
     setFormData(defaultForm);
   };
 
@@ -108,12 +128,6 @@ const NewReservation = (props) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
-  const isValid = async () => {
-    // Display each reservation
-    console.log("inside isValid");
-    // compare formData w/ reservations
-    // if timeslot & room & date match => isValid = false
-  };
 
   const isWeekday = (date) => {
     const day = getDay(date);
