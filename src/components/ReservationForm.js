@@ -88,9 +88,12 @@ const NewReservation = (props) => {
 
   // Reservation data
   const reservationComponents = reservations.map((res) => {
-    let datee = new Date(res.date);
-    let newDatee = datee.getDate();
-    return console.log(res.id, res.room, res.timeslot, newDatee);
+    // let datee = new Date(res.date);
+    // let newDatee = datee.getDate();
+    // return console.log(res.id, res.room, res.timeslot, newDatee);
+    // return console.log(res.id, res.date);
+    let myDate = new Date(Number(res.date) * 1000);
+    return console.log(myDate.toLocaleString());
   });
 
   // Submit form & reset back to default
