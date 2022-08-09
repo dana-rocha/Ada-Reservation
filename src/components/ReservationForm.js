@@ -100,11 +100,22 @@ const NewReservation = (props) => {
     // const queryRes = query(reservationsCollection, where("date", "==", formData.date));
     const queryRes = query(reservationsCollection, where("room", "==", formData.room));
     const queryResDocs = await getDocs(queryRes);
+
+    // const reservationArray = []
+
+    // for (const doc of queryResDocs) {
+    //   reservationArray.push(doc)
+    // }
+
     queryResDocs.docs.map((doc) => {
-      return console.log(doc.id, '=>', doc.data())
+      // date in data is returning seconds
+      return console.log(doc.id, '=>', new Date(doc.data()["date"].seconds * 1000))
     })
+
     // console.log(queryResDocs);
-    console.log(formData.date)
+    // formDate.date returns a normal date??
+    // console.log(formData.date)
+    // console.log(reservationArray);
     // return (false);
     // if timeslot & room & date match => isValid = false
   };
