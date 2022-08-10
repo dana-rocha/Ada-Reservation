@@ -4,7 +4,7 @@ const ReservationList = ({ reservationData }) => {
   const resComponents = reservationData.map((res) => (
     <Reservation
       key={res.id}
-      // date={res.date}
+      date={res.date}
       room={res.room}
       timeslot={res.timeslot}
       reserved={res.reservedBy}

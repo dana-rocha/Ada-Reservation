@@ -9,7 +9,13 @@
 .column {
     flex: 33.333%;
     height: auto;
-    min-height: 100vh;
+    min-height: 60vh;
+}
+
+#reservation-list {
+    height: 200px;
+    overflow-y: scroll;
+    overflow-x:hidden;
 }
 
 ul {

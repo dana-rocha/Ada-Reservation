@@ -65,7 +65,9 @@ const NewReservation = (props) => {
 
     // GET Reservation data
     const getReservations = async () => {
-      const resData = await getDocs(reservationsCollection);
+      const resData = await getDocs(
+        query(reservationsCollection, orderBy("date", "asc"))
+      );
       setReservations(
         resData.docs.map((resDoc) => ({ ...resDoc.data(), id: resDoc.id }))
       );
@@ -100,14 +102,14 @@ const NewReservation = (props) => {
       let day = date.getDate();
       let month = date.getMonth() + 1;
       let year = date.getFullYear();
-      let reservationDate = `${day}/${month}/${year}`;
+      let reservationDate = `${month}/${day}/${year}`;
 
       // Date, month, year for formData
       let formDate = formData.date;
       let formDay = formDate.getDate();
       let formMonth = formDate.getMonth() + 1;
       let formYear = formDate.getFullYear();
-      let submittedDate = `${formDay}/${formMonth}/${formYear}`;
+      let submittedDate = `${formMonth}/${formDay}/${formYear}`;
 
       // Double booking logic: can't book same room, date, and timeslot
       if (
@@ -128,13 +130,13 @@ const NewReservation = (props) => {
     event.preventDefault();
     let savedResult;
 
-    let validCheck = isValid().then((result) => {
+    isValid().then((result) => {
       savedResult = result.every(Boolean);
 
       // Validate that reservation is valid
       if (savedResult === false) {
         alert("Sorry, cannot reserve room.");
-        return console.log("inside create reservation function");
+        return console.log("ERROR: Cannot double-book reservations");
       } else {
         props.handleSubmission(formData);
         let formattedRoom = formData.room.replace(/([A-Z])/g, " $1").trim();
@@ -228,8 +230,8 @@ const NewReservation = (props) => {
             </label>
             <input type="submit" />
           </div>
-          <div className="column">
-            <p>TEST IS THIS A THIRD</p>
+          <div className="column" id="reservation-list">
+            <h3>Current Reservations</h3>
             <ReservationList reservationData={reservations} />
           </div>
         </div>
