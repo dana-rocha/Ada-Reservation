@@ -172,7 +172,6 @@ const NewReservation = (props) => {
             for 1 hour
           </li>
         </ul>
-        {reservationComponents}
         <div className="row">
           <div className="column">
             <label htmlFor="date" className="calendar">
