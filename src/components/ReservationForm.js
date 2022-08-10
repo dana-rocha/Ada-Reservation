@@ -12,6 +12,7 @@ import {
 import { getDocs, orderBy, query, where } from "@firebase/firestore";
 import "./ReservationForm.css";
 import "./Calendar.css";
+import ReservationList from "./ReservationList";
 // import "react-datepicker/dist/react-datepicker.css";
 
 const defaultForm = {
@@ -86,45 +87,40 @@ const NewReservation = (props) => {
     </option>
   ));
 
-  // Reservation data
-  // const reservationComponents = reservations.map((res) => {
-  //   let myDate = res.date;
-  //   return console.log(new Date(myDate.seconds * 1000), res.room, res.timeslot, res.reservedBy);
-  // });
-
   const isValid = async () => {
-    
     // Querying reservations by matching room
-    const queryRes = await getDocs(query(reservationsCollection, where("room", "==", formData.room)));
-    
+    const queryRes = await getDocs(
+      query(reservationsCollection, where("room", "==", formData.room))
+    );
+
     // Display each reservation
     const resMap = queryRes.docs.map((doc) => {
-
       // Date, month, year for reservationDoc
-      let date = new Date(doc.data()["date"].seconds * 1000)
-      let day = date.getDate()
-      let month = date.getMonth() + 1
-      let year = date.getFullYear()
-      let reservationDate = `${day}/${month}/${year}`
+      let date = new Date(doc.data()["date"].seconds * 1000);
+      let day = date.getDate();
+      let month = date.getMonth() + 1;
+      let year = date.getFullYear();
+      let reservationDate = `${day}/${month}/${year}`;
 
       // Date, month, year for formData
-      let formDate = formData.date
-      let formDay = formDate.getDate()
-      let formMonth = formDate.getMonth() + 1
-      let formYear = formDate.getFullYear()
-      let submittedDate = `${formDay}/${formMonth}/${formYear}`
+      let formDate = formData.date;
+      let formDay = formDate.getDate();
+      let formMonth = formDate.getMonth() + 1;
+      let formYear = formDate.getFullYear();
+      let submittedDate = `${formDay}/${formMonth}/${formYear}`;
 
       // Double booking logic: can't book same room, date, and timeslot
-      if (doc.data()["timeslot"] === formData.timeslot && reservationDate === submittedDate) {
+      if (
+        doc.data()["timeslot"] === formData.timeslot &&
+        reservationDate === submittedDate
+      ) {
         return false;
       } else {
         return true;
       }
+    });
 
-    })
-
-    return resMap
-
+    return resMap;
   };
 
   // Submit form & reset back to default
@@ -132,28 +128,25 @@ const NewReservation = (props) => {
     event.preventDefault();
     let savedResult;
 
-    let validCheck = isValid()
-      .then((result) => {
-        savedResult = result.every(Boolean)
+    let validCheck = isValid().then((result) => {
+      savedResult = result.every(Boolean);
 
-        // Validate that reservation is valid
-        if (savedResult === false) {
-          alert("Sorry, cannot reserve room.");
-          return (console.log("inside create reservation function"));
-        } else {
-          props.handleSubmission(formData);
-          let formattedRoom = formData.room.replace(/([A-Z])/g, ' $1').trim()
-          alert(`Success! You have reserved ${formattedRoom}!`);
-        }
+      // Validate that reservation is valid
+      if (savedResult === false) {
+        alert("Sorry, cannot reserve room.");
+        return console.log("inside create reservation function");
+      } else {
+        props.handleSubmission(formData);
+        let formattedRoom = formData.room.replace(/([A-Z])/g, " $1").trim();
+        alert(`Success! You have reserved ${formattedRoom}!`);
       }
-      )
+    });
     setFormData(defaultForm);
   };
 
   const onInputChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
-
 
   const isWeekday = (date) => {
     const day = getDay(date);
@@ -234,6 +227,10 @@ const NewReservation = (props) => {
               </select>
             </label>
             <input type="submit" />
+          </div>
+          <div className="column">
+            <p>TEST IS THIS A THIRD</p>
+            <ReservationList reservationData={reservations} />
           </div>
         </div>
       </section>
