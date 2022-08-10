@@ -105,7 +105,21 @@ const NewReservation = (props) => {
       // date in data is returning seconds
       // console.log(doc.data()["timeslot"])
       // console.log(doc.data()["timeslot"] === formData.timeslot)
-      if (doc.data()["timeslot"] === formData.timeslot) {
+      let date = new Date(doc.data()["date"].seconds * 1000)
+      let day = date.getDate()
+      let month = date.getMonth() + 1
+      let year = date.getFullYear()
+      let reservationDate = `${day}/${month}/${year}`
+      // console.log(str)
+
+      let formDate = formData.date
+      let formDay = formDate.getDate()
+      let formMonth = formDate.getMonth() + 1
+      let formYear = formDate.getFullYear()
+      let submittedDate = `${formDay}/${formMonth}/${formYear}`
+      // console.log(formStr)
+      // console.log(new Date(doc.data()["date"].seconds * 1000).getFullYear())
+      if (doc.data()["timeslot"] === formData.timeslot && reservationDate === submittedDate) {
         return false;
       } else {
         return true;
@@ -138,7 +152,7 @@ const NewReservation = (props) => {
       .then((result) => {
         savedResult = result.every(Boolean)
         // console.log(result)
-        console.log(savedResult)
+        // console.log(savedResult)
         // Validate that reservation is valid
         if (savedResult === false) {
           // isValid();
