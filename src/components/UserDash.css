@@ -4,15 +4,23 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    display: flex;
   }
-  .dashboard__container {
+
+.dashboard__container {
+  flex: 50%;
+  height: auto;
+}
+
+.dashboard__container {
     display: flex;
     flex-direction: column;
     text-align: center;
     background-color: #dcdcdc;
     padding: 30px;
   }
-  .dashboard__btn {
+
+.dashboard__btn {
     padding: 10px;
     font-size: 18px;
     margin-top: 10px;
@@ -20,6 +28,7 @@
     color: white;
     background-color: black;
   }
-  .dashboard div {
+
+.dashboard div {
     margin-top: 7px;
   }

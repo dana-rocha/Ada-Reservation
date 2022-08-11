@@ -25,12 +25,14 @@ function App() {
       </header>
       <main>
         <Routes>
-          <Route path="/" element={<Login/>} component={Login}/>
-          <Route path="/home" element={<Home/>} />
-          <Route path="/user" element={<User/>} />
+          <Route path="/" element={<Login />} component={Login} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/user" element={<User />} />
         </Routes>
       </main>
-      <footer>© 2022 Ada C17 alum grads - Dana Rocha & Elaine Smith</footer>
+      <footer>
+        © 2022 Ada C17 alum grads - Dana Rocha 🐳 & Elaine Smith 🦦{" "}
+      </footer>
     </div>
   );
 }
@@ -38,8 +40,9 @@ function App() {
 function Login() {
   return (
     <>
-      <img src={AdaPic} alt="Changing the face of tech." id="ada-pic"/>
-      <LoginComponent/>
+      <img src={AdaPic} alt="Changing the face of tech." id="ada-pic" />
+      <LoginComponent />
+      <p>🦁 C18 - You got this! 🐆 </p>
     </>
   );
 }
@@ -60,7 +63,7 @@ function Home() {
 function User() {
   return (
     <>
-      <UserDash/>
+      <UserDash />
     </>
   );
 }

@@ -30,15 +30,21 @@ function Dashboard() {
 
   return (
     <div className="dashboard">
-      <div className="dashboard__container">
-        Logged in as
-        <div>{name}</div>
-        <div>{user?.email}</div>
-        <button className="dashboard__btn" onClick={logout}>
-          Logout
-        </button>
+      <div className="dashboard__column">
+        <div className="dashboard__container">
+          Logged in as
+          <div>{name}</div>
+          <div>{user?.email}</div>
+          <button className="dashboard__btn" onClick={logout}>
+            Logout
+          </button>
+        </div>
+      </div>
+      <div className="dashboard__column">
+        <h3>My reservations</h3>
+        <p>PLACEHOLDER-RESERVATION COMPONENT</p>
       </div>
     </div>
   );
-};
+}
 export default Dashboard;
