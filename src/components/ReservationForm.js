@@ -7,28 +7,41 @@ import {
   roomsCollection,
   timeSlotCollection,
   reservationsCollection,
-  auth,createUserRes
+  auth
 } from "../firebase-config";
 import { getDocs, orderBy, query, where } from "@firebase/firestore";
 import "./ReservationForm.css";
 import "./Calendar.css";
 import ReservationList from "./ReservationList";
-// import "react-datepicker/dist/react-datepicker.css";
+
+// const useAuthenticationHome = () => {
+//   const [user, loading] = useAuthState(auth);
+//   const navigate = useNavigate();
+
+//     // User can't access home and user page without login
+//     useEffect(() => {
+//       if (loading) return;
+//       if (!user) return navigate("/");
+//     }, [user, loading]);
+// }
 
 const defaultForm = {
-  date: "",
+  date: new Date(),
   description: "",
   room: "",
   timeslot: "",
   reservedBy: "",
 };
 
+
 const NewReservation = (props) => {
+  // useAuthenticationHome();
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
 
   // User can't access home and user page without login
   useEffect(() => {
+    // console.log(user)
     if (loading) return;
     if (!user) return navigate("/");
   }, [user, loading]);
@@ -73,6 +86,8 @@ const NewReservation = (props) => {
       );
     };
     getReservations();
+
+    // setFormData({ ...formData, reservedBy: user.uid});
   }, []);
 
   // Setting dropdown options for Form => Rooms
@@ -130,6 +145,8 @@ const NewReservation = (props) => {
     event.preventDefault();
     let savedResult;
 
+    // console.log(user.uid)
+
     isValid().then((result) => {
       savedResult = result.every(Boolean);
 
@@ -138,9 +155,9 @@ const NewReservation = (props) => {
         alert("Sorry, cannot reserve room.");
         return console.log("ERROR: Cannot double-book reservations");
       } else {
+
         props.handleSubmission(formData);
-        console.log("result: ",result)
-        createUserRes();
+        // Alert message
         let formattedRoom = formData.room.replace(/([A-Z])/g, " $1").trim();
         alert(`Success! You have reserved ${formattedRoom}!`);
       }
@@ -150,6 +167,7 @@ const NewReservation = (props) => {
   };
 
   const onInputChange = (event) => {
+    console.log(user.uid)
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
@@ -186,16 +204,16 @@ const NewReservation = (props) => {
             </label>
           </div>
           <div className="column">
-            <label htmlFor="reservedBy" className="form-right">
+          {/* <label htmlFor="reservedBy" className="form-right">
               Reserved By:
               <input
-                type="text"
+                type="hidden"
                 name="reservedBy"
-                value={formData.reservedBy}
-                onChange={onInputChange}
+                defaultValue={user.uid}
+                // onChange={onInputChange}
               />
             </label>
-            <br />
+            <br /> */}
             <label htmlFor="description" className="form-right">
               Description:
               <input

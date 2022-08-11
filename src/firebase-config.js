@@ -61,19 +61,6 @@ const signInWithGoogle = async () => {
   }
 };
 
-// Current user, create reservation
-const createUserRes = () => {
-  const currentUser = auth.currentUser;
-
-  if (currentUser) {
-    // if user is signed in
-    // console.log(currentUser.uid)
-    addDoc(reservationsCollection, {
-      uid: currentUser.uid,
-    })
-  } 
-}
-
 // Send a password reset link to user's email
 const sendPasswordResetLink = async (userEmail) => {
   try {
@@ -92,5 +79,5 @@ const logout = () => {
 
 export {
   auth, signInWithGoogle, logout,
-  sendPasswordResetLink, createUserRes,
+  sendPasswordResetLink
 };
