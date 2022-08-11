@@ -9,7 +9,7 @@
 
 .dashboard__column {
   flex: 50%;
-  height: auto;
+  height: 60vh;
   overflow-y: scroll;
   overflow-x:hidden;
 }
