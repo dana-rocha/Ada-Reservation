@@ -1,3 +1,7 @@
 #reservation {
-    border: 1px solid red;
+    background-color: #0F355E;
+    color: white;
+    padding: 25px;
+    margin: 25px;
+    box-shadow: 10px 10px #E80F5E;
 }
