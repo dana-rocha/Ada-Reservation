@@ -167,8 +167,9 @@ const NewReservation = (props) => {
   };
 
   const onInputChange = (event) => {
-    console.log(user.uid)
-    setFormData({ ...formData, [event.target.name]: event.target.value });
+    // console.log(user.uid)
+    setFormData({ ...formData, [event.target.name]: event.target.value, reservedBy:user.uid });
+    console.log(formData)
   };
 
   const isWeekday = (date) => {
@@ -210,7 +211,7 @@ const NewReservation = (props) => {
                 type="hidden"
                 name="reservedBy"
                 defaultValue={user.uid}
-                // onChange={onInputChange}
+                onChange={onInputChange}
               />
             </label>
             <br /> */}
