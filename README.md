@@ -1,14 +1,15 @@
 # Ada Room Reservation
 2022 Capstone project for Ada Developers Academy - Cohort 17
 
-This project was developed over the course of 3 weeks as a graduation requirement of the Ada program. Prior to this project, neither of us have had any experience with Typescript, nor any other static typed programming language. Similarly, neither of us have had any experience with a noSQL database. Growing knowledge and experience in both was central to our learning goals for this project.
+This project was developed over the course of 3 weeks as a graduation requirement of the Ada program. Prior to this project, neither of us had any experience with a noSQL database. Growing knowledge and experience was central to our learning goals for this project.
 
 This project addresses a real world problem we noticed as students while attending Ada Developers Academy - Seattle Campus. We have many beautiful study rooms on campus, but currently the only method of reserving a room & time slot is by writing our names on a white board posted on the wall next to each room.
 
 It is our desire to turn this project over to the staff and administration of Ada after graduation so that it may help future students. 
 
 ## Demo
-Live Demo (NOTE: Update w/ link once project is complete & deployed)
+[Live Demo](https://ada-reservation-fb.firebaseapp.com/)
+
 (Embed video demo)
 
 ## Features
@@ -18,7 +19,7 @@ Live Demo (NOTE: Update w/ link once project is complete & deployed)
 
 ## Tech Stack
 - React
-- Typescript
+- Javascript
 - Google Firebase
 
 ## Notes
