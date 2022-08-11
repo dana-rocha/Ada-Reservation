@@ -3,12 +3,15 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { auth, db, logout } from "../firebase-config";
 import { query, collection, getDocs, where } from "firebase/firestore";
+import { reservationsCollection } from "../firebase-config";
+import ReservationList from "./ReservationList";
 import "./UserDash.css";
 
 function Dashboard() {
   const [user, loading] = useAuthState(auth);
   const [name, setName] = useState("");
   const navigate = useNavigate();
+  const [reservations, setReservations] = useState([]);
 
   const fetchUserName = async () => {
     try {
@@ -26,6 +29,17 @@ function Dashboard() {
     if (loading) return;
     if (!user) return navigate("/");
     fetchUserName();
+
+    // GET User reservation data
+    const getUserRes = async () => {
+      const resData = await getDocs(
+        query(reservationsCollection, where("reservedBy", "==", user.uid))
+      );
+      setReservations(
+        resData.docs.map((resDoc) => ({ ...resDoc.data(), id: resDoc.id }))
+      );
+    };
+    getUserRes();
   }, [user, loading]);
 
   return (
@@ -42,7 +56,7 @@ function Dashboard() {
       </div>
       <div className="dashboard__column">
         <h3>My reservations</h3>
-        <p>PLACEHOLDER-RESERVATION COMPONENT</p>
+        <ReservationList reservationData={reservations} />
       </div>
     </div>
   );
