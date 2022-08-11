@@ -7,7 +7,7 @@ import {
   roomsCollection,
   timeSlotCollection,
   reservationsCollection,
-  auth,
+  auth,createUserRes
 } from "../firebase-config";
 import { getDocs, orderBy, query, where } from "@firebase/firestore";
 import "./ReservationForm.css";
@@ -133,16 +133,19 @@ const NewReservation = (props) => {
     isValid().then((result) => {
       savedResult = result.every(Boolean);
 
-      // Validate that reservation is valid
+      // Validate reservation 
       if (savedResult === false) {
         alert("Sorry, cannot reserve room.");
         return console.log("ERROR: Cannot double-book reservations");
       } else {
         props.handleSubmission(formData);
+        console.log("result: ",result)
+        createUserRes();
         let formattedRoom = formData.room.replace(/([A-Z])/g, " $1").trim();
         alert(`Success! You have reserved ${formattedRoom}!`);
       }
     });
+
     setFormData(defaultForm);
   };
 
