@@ -14,16 +14,6 @@ import "./ReservationForm.css";
 import "./Calendar.css";
 import ReservationList from "./ReservationList";
 
-// const useAuthenticationHome = () => {
-//   const [user, loading] = useAuthState(auth);
-//   const navigate = useNavigate();
-
-//     // User can't access home and user page without login
-//     useEffect(() => {
-//       if (loading) return;
-//       if (!user) return navigate("/");
-//     }, [user, loading]);
-// }
 
 const defaultForm = {
   date: new Date(),
@@ -41,8 +31,10 @@ const NewReservation = (props) => {
 
   // User can't access home and user page without login
   useEffect(() => {
-    // console.log(user)
+    
     if (loading) return;
+
+    // If user isn't logged in, return to root
     if (!user) return navigate("/");
   }, [user, loading]);
 
@@ -87,7 +79,6 @@ const NewReservation = (props) => {
     };
     getReservations();
 
-    // setFormData({ ...formData, reservedBy: user.uid});
   }, []);
 
   // Setting dropdown options for Form => Rooms
@@ -145,8 +136,6 @@ const NewReservation = (props) => {
     event.preventDefault();
     let savedResult;
 
-    // console.log(user.uid)
-
     isValid().then((result) => {
       savedResult = result.every(Boolean);
 
@@ -167,9 +156,10 @@ const NewReservation = (props) => {
   };
 
   const onInputChange = (event) => {
-    // console.log(user.uid)
-    setFormData({ ...formData, [event.target.name]: event.target.value, reservedBy:user.uid });
-    console.log(formData)
+    
+    setFormData({ ...formData, [event.target.name]: event.target.value, 
+      reservedBy:user.uid });
+    
   };
 
   const isWeekday = (date) => {
@@ -205,16 +195,6 @@ const NewReservation = (props) => {
             </label>
           </div>
           <div className="column">
-          {/* <label htmlFor="reservedBy" className="form-right">
-              Reserved By:
-              <input
-                type="hidden"
-                name="reservedBy"
-                defaultValue={user.uid}
-                onChange={onInputChange}
-              />
-            </label>
-            <br /> */}
             <label htmlFor="description" className="form-right">
               Description:
               <input
