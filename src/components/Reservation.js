@@ -14,6 +14,11 @@ const Reservation = (props) => {
   const reserved = props.reservedBy;
   const description = props.description;
 
+  // Cancel Reservation callback prop
+  const cancelRes = () => {
+    props.cancelResCallback(props.id);
+  };
+
   return (
     <div id="reservation">
       <p>{date}</p>
@@ -21,6 +26,9 @@ const Reservation = (props) => {
       <p>{timeslot}</p>
       <p>{reserved}</p>
       <p>{description}</p>
+      <button onClick={cancelRes} id="cancelButton">
+        X
+      </button>
     </div>
   );
 };

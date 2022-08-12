@@ -2,7 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { auth, db, logout } from "../firebase-config";
-import { query, collection, getDocs, where } from "firebase/firestore";
+import {
+  query,
+  collection,
+  getDocs,
+  where,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
 import { reservationsCollection } from "../firebase-config";
 import ReservationList from "./ReservationList";
 import "./UserDash.css";
@@ -34,6 +41,11 @@ function Dashboard() {
     const getUserRes = async () => {
       const resData = await getDocs(
         query(reservationsCollection, where("reservedBy", "==", user.uid))
+        // where("reservedBy", "==", user.uid)
+        // orderBy("reservedBy"),
+        // orderBy("date", "asc")
+        // // where("date", ">=", new Date())
+        // )
       );
       setReservations(
         resData.docs.map((resDoc) => ({ ...resDoc.data(), id: resDoc.id }))
@@ -41,6 +53,17 @@ function Dashboard() {
     };
     getUserRes();
   }, [user, loading]);
+
+  const deleteRes = async (id) => {
+    await deleteDoc(doc(reservationsCollection, id))
+      .then((result) => {
+        const cancelledRes = reservations.filter((res) => res.id !== id);
+        setReservations(cancelledRes);
+      })
+      .catch((error) => {
+        console.log("ERROR");
+      });
+  };
 
   return (
     <div className="dashboard">
@@ -56,7 +79,10 @@ function Dashboard() {
       </div>
       <div className="dashboard__column">
         <h3>My reservations</h3>
-        <ReservationList reservationData={reservations} />
+        <ReservationList
+          reservationData={reservations}
+          cancelResCallback={deleteRes}
+        />
       </div>
     </div>
   );

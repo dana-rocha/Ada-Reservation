@@ -49,6 +49,11 @@ main ul {
   list-style-type: none;
 }
 
+p {
+  font-size: larger;
+  font-weight: bolder;
+}
+
 footer {
   background-color: #0F355E;
   color: white;

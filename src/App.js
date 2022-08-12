@@ -30,9 +30,7 @@ function App() {
           <Route path="/user" element={<User />} />
         </Routes>
       </main>
-      <footer>
-        © 2022 Ada C17 alumni - Dana Rocha 🐳 & Elaine Smith 🦦{" "}
-      </footer>
+      <footer>© 2022 Ada C17 alumni - Dana Rocha 🐳 & Elaine Smith 🦦 </footer>
     </div>
   );
 }
@@ -40,9 +38,9 @@ function App() {
 function Login() {
   return (
     <>
+      <p>🦁 C18 - You got this! 🐆 </p>
       <img src={AdaPic} alt="Changing the face of tech." id="ada-pic" />
       <LoginComponent />
-      <p>🦁 C18 - You got this! 🐆 </p>
     </>
   );
 }
@@ -51,7 +49,6 @@ function Home() {
   const makeReservation = async (NewSubmission) => {
     // Add a new document in collection "reservations"
     const docRef = await addDoc(reservationsCollection, NewSubmission);
-
   };
   return (
     <div className="reservation-form">

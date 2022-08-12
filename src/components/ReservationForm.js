@@ -7,13 +7,12 @@ import {
   roomsCollection,
   timeSlotCollection,
   reservationsCollection,
-  auth
+  auth,
 } from "../firebase-config";
 import { getDocs, orderBy, query, where } from "@firebase/firestore";
 import "./ReservationForm.css";
 import "./Calendar.css";
 import ReservationList from "./ReservationList";
-
 
 const defaultForm = {
   date: new Date(),
@@ -23,7 +22,6 @@ const defaultForm = {
   reservedBy: "",
 };
 
-
 const NewReservation = (props) => {
   // useAuthenticationHome();
   const [user, loading] = useAuthState(auth);
@@ -31,7 +29,6 @@ const NewReservation = (props) => {
 
   // User can't access home and user page without login
   useEffect(() => {
-    
     if (loading) return;
 
     // If user isn't logged in, return to root
@@ -71,14 +68,17 @@ const NewReservation = (props) => {
     // GET Reservation data
     const getReservations = async () => {
       const resData = await getDocs(
-        query(reservationsCollection, orderBy("date", "asc"))
+        query(
+          reservationsCollection,
+          where("date", ">=", new Date()),
+          orderBy("date")
+        )
       );
       setReservations(
         resData.docs.map((resDoc) => ({ ...resDoc.data(), id: resDoc.id }))
       );
     };
     getReservations();
-
   }, []);
 
   // Setting dropdown options for Form => Rooms
@@ -139,12 +139,11 @@ const NewReservation = (props) => {
     isValid().then((result) => {
       savedResult = result.every(Boolean);
 
-      // Validate reservation 
+      // Validate reservation
       if (savedResult === false) {
         alert("Sorry, cannot reserve room.");
         return console.log("ERROR: Cannot double-book reservations");
       } else {
-
         props.handleSubmission(formData);
         // Alert message
         let formattedRoom = formData.room.replace(/([A-Z])/g, " $1").trim();
@@ -156,10 +155,11 @@ const NewReservation = (props) => {
   };
 
   const onInputChange = (event) => {
-    
-    setFormData({ ...formData, [event.target.name]: event.target.value, 
-      reservedBy:user.uid });
-    
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+      reservedBy: user.uid,
+    });
   };
 
   const isWeekday = (date) => {
