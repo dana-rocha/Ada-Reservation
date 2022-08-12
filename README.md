@@ -27,9 +27,9 @@ Special shoutout to all the wonderful instructors, TAs, & fellow Adies who have 
 
 Extra special shoutout to Team BMO -- our capstone PM group & especially our PM Kendall -- who helped keep us accountable and supported our growth. Y'all are the best!!
 
-Thank you Sancha, the Ada Seattle student success coach, without whom this project wouldn't exist!
+Thank you Sancha, the Seattle campus's student success coach - this project wouldn't exist without you!
 
-This project is our gift to the upcoming C18 and beyond cohorts. We hope you use it well! ❤️
+This project is our gift to the upcoming Cohort 18 and beyond. We hope you use it well! ❤️
 
 ## Copyright
-Copyright © 2022 Dana Rocha (she/her) & Elaine Smith (she/her) 🇵🇭🇺🇸
+Copyright © 2022 Dana Rocha 🐳 (she/her) & Elaine Smith 🦦 (she/her) 🇵🇭🇺🇸
