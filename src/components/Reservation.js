@@ -27,7 +27,7 @@ const Reservation = (props) => {
       <p>{reserved}</p>
       <p>{description}</p>
       <button onClick={cancelRes} id="cancelButton">
-        X
+        Cancel Reservation
       </button>
     </div>
   );

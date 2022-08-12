@@ -79,7 +79,7 @@ function Dashboard() {
         </div>
       </div>
       <div className="dashboard__column">
-        <h3>My reservations</h3>
+        <h3>My Reservations</h3>
         <ReservationList
           reservationData={reservations}
           cancelResCallback={deleteRes}

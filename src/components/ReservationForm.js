@@ -180,17 +180,19 @@ const NewReservation = (props) => {
         <div className="row">
           <div className="column">
             <label htmlFor="date" className="calendar">
-              Select a Date:
-              <DatePicker
-                selected={startDate}
-                onChange={(date) => {
-                  setStartDate(date);
-                  setFormData({ ...formData, date: date });
-                }}
-                minDate={new Date()}
-                filterDate={isWeekday}
-                inline
-              />
+              <h3>Select a Date:</h3>
+              <div id="calendarContainer">
+                <DatePicker
+                  selected={startDate}
+                  onChange={(date) => {
+                    setStartDate(date);
+                    setFormData({ ...formData, date: date });
+                  }}
+                  minDate={new Date()}
+                  filterDate={isWeekday}
+                  inline
+                />
+              </div>
             </label>
           </div>
           <div className="column">
@@ -203,9 +205,7 @@ const NewReservation = (props) => {
                 onChange={onInputChange}
               />
             </label>
-            <br />
             <label htmlFor="timeslot" className="form-right">
-              Timeslot:
               <select
                 type="text"
                 name="timeslot"
@@ -216,9 +216,7 @@ const NewReservation = (props) => {
                 {timeSlotComponents}
               </select>
             </label>
-            <br />
             <label htmlFor="room" className="form-right">
-              Room:
               <select
                 type="text"
                 name="room"
