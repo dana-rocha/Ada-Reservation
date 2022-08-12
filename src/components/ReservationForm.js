@@ -27,14 +27,7 @@ const NewReservation = (props) => {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
 
-  // User can't access home and user page without login
-  useEffect(() => {
-    if (loading) return;
-
-    // If user isn't logged in, return to root
-    if (!user) return navigate("/");
-  }, [user, loading]);
-
+  // form & collection state
   const [formData, setFormData] = useState(defaultForm);
   const [startDate, setStartDate] = useState(new Date());
   const [rooms, setRooms] = useState([]);
@@ -42,6 +35,12 @@ const NewReservation = (props) => {
   const [reservations, setReservations] = useState([]);
 
   useEffect(() => {
+    // User can't access home and user page without login
+    if (loading) return;
+
+    // If user isn't logged in, return to root
+    if (!user) return navigate("/");
+
     // GET Room data
     const getRooms = async () => {
       const roomData = await getDocs(roomsCollection);
@@ -79,7 +78,7 @@ const NewReservation = (props) => {
       );
     };
     getReservations();
-  }, []);
+  }, [user, loading]);
 
   // Setting dropdown options for Form => Rooms
   const roomComponents = rooms.map((room) => (
@@ -150,7 +149,6 @@ const NewReservation = (props) => {
         alert(`Success! You have reserved ${formattedRoom}!`);
       }
     });
-
     setFormData(defaultForm);
   };
 
@@ -189,6 +187,7 @@ const NewReservation = (props) => {
                   setStartDate(date);
                   setFormData({ ...formData, date: date });
                 }}
+                minDate={new Date()}
                 filterDate={isWeekday}
                 inline
               />

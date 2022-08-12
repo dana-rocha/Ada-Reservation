@@ -59,6 +59,7 @@ function Dashboard() {
       .then((result) => {
         const cancelledRes = reservations.filter((res) => res.id !== id);
         setReservations(cancelledRes);
+        alert("Success! You have deleted a reservation!");
       })
       .catch((error) => {
         console.log("ERROR");
