@@ -116,13 +116,17 @@ const NewReservation = (props) => {
       let formYear = formDate.getFullYear();
       let submittedDate = `${formMonth}/${formDay}/${formYear}`;
 
-      // Double booking logic: can't book same room, date, and timeslot
-      if (
+      
+      // Can't make reservation with blank forms
+      if ((formData.timeslot === '' || formData.room === '')) {
+        return false;
+      } else if (
+        // Double booking logic: can't book same room, date, and timeslot
         doc.data()["timeslot"] === formData.timeslot &&
         reservationDate === submittedDate
       ) {
         return false;
-      } else {
+      }  else {
         return true;
       }
     });
@@ -134,14 +138,20 @@ const NewReservation = (props) => {
   const createReservation = (event) => {
     event.preventDefault();
     let savedResult;
-
+    
     isValid().then((result) => {
-      savedResult = result.every(Boolean);
+      // If result is an empty array
+      if (result.length === 0){
+        savedResult = false
+      } else {
+        savedResult = result.every(Boolean);
+      }
 
       // Validate reservation
       if (savedResult === false) {
+        // Can't double book, Can't have empty form fields
         alert("Sorry, cannot reserve room.");
-        return console.log("ERROR: Cannot double-book reservations");
+        return console.log("ERROR");
       } else {
         props.handleSubmission(formData);
         // Alert message
@@ -160,6 +170,7 @@ const NewReservation = (props) => {
     });
   };
 
+  // Can't book a reservation on weekends, Office is closed
   const isWeekday = (date) => {
     const day = getDay(date);
     return day !== 0 && day !== 6;
