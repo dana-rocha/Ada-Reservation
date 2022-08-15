@@ -10,9 +10,14 @@ import {
   auth,
 } from "../firebase-config";
 import { getDocs, orderBy, query, where } from "@firebase/firestore";
+import 'materialize-css/dist/css/materialize.min.css';
+import M from 'materialize-css';
 import "./ReservationForm.css";
 import "./Calendar.css";
 import ReservationList from "./ReservationList";
+// import SideNav from "../components/SideNav";
+// import useWindowSize from "./hooks";
+
 
 const defaultForm = {
   date: new Date(),
@@ -189,6 +194,12 @@ const NewReservation = (props) => {
           </li>
         </ul>
         <div className="row">
+              <div className="column" id="reservation-list">
+                {/* <SideNav /> */}
+                <h3>Current Reservations</h3>
+                <ReservationList reservationData={reservations} />
+              </div>
+
           <div className="column">
             <label htmlFor="date" className="calendar">
               <h3>Select a Date:</h3>
@@ -239,10 +250,6 @@ const NewReservation = (props) => {
               </select>
             </label>
             <input type="submit" />
-          </div>
-          <div className="column" id="reservation-list">
-            <h3>Current Reservations</h3>
-            <ReservationList reservationData={reservations} />
           </div>
         </div>
       </section>

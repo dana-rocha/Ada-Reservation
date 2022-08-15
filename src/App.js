@@ -5,6 +5,7 @@ import { reservationsCollection } from "./firebase-config";
 import NewReservation from "./components/ReservationForm";
 import LoginComponent from "./components/Login";
 import UserDash from "./components/UserDash";
+import M from  'materialize-css/dist/js/materialize.min.js';
 import "./App.css";
 import AdaPic from "./images/web_pic.jpg";
 import adaLogo from "./images/logo.png";
@@ -15,12 +16,17 @@ function App() {
       <header>
         <img src={adaLogo} alt="Ada Developers Academy logo" id="adaLogo" />
         <nav id="navbar">
-          <Link to="/home" className="links">
-            Home
-          </Link>
-          <Link to="/user" className="links">
-            User
-          </Link>
+          <div className='container'>
+            <ul id='nav-mobile' class='right hide-on-med-and-down'>
+              <Link to="/home" className="links">
+                Home
+              </Link>
+              <Link to="/user" className="links">
+                User
+              </Link>
+            </ul>
+          </div>
+        
         </nav>
       </header>
       <main>
