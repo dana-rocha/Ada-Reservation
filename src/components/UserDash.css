@@ -3,11 +3,11 @@
   height: 75vh;
   overflow-y: scroll;
   overflow-x:hidden;
+  border: hidden;
 }
 
 .logout-column {
   position: relative;
-
 }
 
 .dashboard__container {
