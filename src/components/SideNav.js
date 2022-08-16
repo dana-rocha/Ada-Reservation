@@ -5,6 +5,7 @@ import { getDocs, orderBy, query, where } from "@firebase/firestore";
 import "./ReservationForm.css";
 import M from "materialize-css/dist/js/materialize.min.js";
 
+
 const SideNav = () => {
   const [reservations, setReservations] = useState([]);
 
@@ -32,7 +33,7 @@ const SideNav = () => {
       <ul id="slide-out" className="sidenav">
         <li>
           <div id="reservation-list">
-            <h3>Current Reservations</h3>
+            <h4>Current Reservations</h4>
             <ReservationList reservationData={reservations} />
           </div>
         </li>

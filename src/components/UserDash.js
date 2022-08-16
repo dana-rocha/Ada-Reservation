@@ -76,7 +76,7 @@ function Dashboard() {
       {/* User's Reservations Column (Right) */}
       <div className="dashboard__column col s12 m6 l6">
         <div className='container users-list'>
-          <h4>My Reservations: </h4>
+          <h4>My Reservations</h4>
           <ReservationList
             reservationData={reservations}
             cancelResCallback={deleteRes}
