@@ -8,6 +8,7 @@
 header {
   display: flex;
   justify-content: left;
+  margin-bottom: 2.5%;
   /* position: fixed; */
 }
 
