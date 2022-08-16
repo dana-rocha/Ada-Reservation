@@ -162,10 +162,13 @@ const NewReservation = (props) => {
 
   return (
     <form onSubmit={createReservation}>
-      <section id="reservationForm">
+      {/* <section id="reservationForm"> */}
+
         <div className="collection row">
+
+          {/* Calendar Column */}
           <div className="col s12 m6 l6">
-            <div id="calendar-container">
+            <div id="container calendar-container">
               <label htmlFor="date" className="calendar">
                 <h3>Select a Date:</h3>
                 <div id="calendarContainer">
@@ -183,8 +186,11 @@ const NewReservation = (props) => {
               </label>
             </div>
           </div>
+          
+
+          {/* Reservation Form Column */}
           <div className="col s12 m6 l6">
-            <div id="reservation-form-container">
+            <div id="container reservation-form-container">
               <h2> Make a Reservation </h2>
               <ul className="reservation-rules">
                 <li>Reservation blocks are 30 mins long from 9AM - 5PM</li>
@@ -238,7 +244,9 @@ const NewReservation = (props) => {
             </div>
           </div>
         </div>
-      </section>
+
+
+      {/* </section> */}
     </form>
   );
 };

@@ -16,7 +16,7 @@ function App() {
         <nav className="navBar">
           <div className="nav-wrapper">
             <img src={adaLogo} alt="Ada Developers Academy logo" id="adaLogo" />
-            <ul id="nav-mobile" className="right hide-on-med-and-down">
+            <ul id="nav-mobile" className="right">
               <li>
                 <a href="/home">Home</a>
               </li>

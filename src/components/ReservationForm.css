@@ -1,12 +1,19 @@
 .row {
-    display: flex;
+    display: block;
+    border: 3px dashed green;
 }
 
-.column {
+.col {
+  border: 3px dotted red;
+  max-width: 100vh;
+  max-height: 100vh;
+}
+
+/* .column {
     flex: 50%;
     height: auto;
     margin: 25px;
-}
+} */
 
 #reservation-list {
     height: auto;
