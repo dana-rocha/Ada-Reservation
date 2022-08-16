@@ -2,9 +2,14 @@
     border: 1px solid red;
 } */
 
+.main-content, .dashboard-content {
+  /* border: 3px dashed purple; */
+  margin-top: 5%;
+}
+
 .row {
     display: block;
-    border: 3px solid green;
+    /* border: 3px solid green; */
 }
 
 /* .column {
@@ -17,7 +22,7 @@
 } */
 
 .col {
-  border: 1px dashed red;
+  /* border: 1px dashed red; */
   max-width: 100vh;
   max-height: 100vh;
 }

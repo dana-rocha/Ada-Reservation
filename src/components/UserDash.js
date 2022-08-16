@@ -68,7 +68,7 @@ function Dashboard() {
 
   return (
     // <div className="dashboard">
-      <div className="collection row">
+      <div className="collection row dashboard-content">
       {/* <div className="col s12 m6 l6"> */}
         <div className="dashboard__column col s12 m6 l6">
           <div className="container dashboard__container">

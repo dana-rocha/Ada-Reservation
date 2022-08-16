@@ -21,11 +21,11 @@ const Reservation = (props) => {
 
   return (
     <div id="reservation">
-      <p>{date}</p>
-      <p>{room}</p>
+      <p>Date: {date}</p>
+      <p>Room: {room}</p>
       <p>{timeslot}</p>
       <p>{reserved}</p>
-      <p>{description}</p>
+      <p>Description: {description}</p>
       <button onClick={cancelRes} id="cancelButton">
         Cancel Reservation
       </button>

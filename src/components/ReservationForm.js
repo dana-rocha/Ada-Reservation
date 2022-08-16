@@ -182,7 +182,7 @@ const NewReservation = (props) => {
   };
 
   return (
-    <div className='container'>
+    <div className='container main-content'>
       <form onSubmit={createReservation}>
       {/* <section id="reservationForm"> */}
 
