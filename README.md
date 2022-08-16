@@ -1,4 +1,4 @@
-# Ada Room Reservation
+# Ada Room Reservation System
 2022 Capstone project for Ada Developers Academy - Cohort 17
 
 This project was developed over the course of 3 weeks as a graduation requirement of the Ada program. Prior to this project, neither of us had any experience with a noSQL database. Growing knowledge and experience was central to our learning goals for this project.
@@ -21,6 +21,24 @@ It is our desire to turn this project over to the staff and administration of Ad
 - React
 - Javascript
 - Google Firebase
+
+```yaml
+dependencies:
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^13.0.0",
+    "@testing-library/user-event": "^13.2.1",
+    "date-fns": "^2.29.1",
+    "dependencies": "^0.0.1",
+    "firebase": "^9.9.1",
+    "firebase-tools": "^11.4.2",
+    "react": "^18.2.0",
+    "react-datepicker": "^4.8.0",
+    "react-dom": "^18.2.0",
+    "react-firebase-hooks": "^5.0.3",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.0"
+```
 
 ## Notes
 Special shoutout to all the wonderful instructors, TAs, & fellow Adies who have shared knowledge, resources, time, & support which made this project possible.
