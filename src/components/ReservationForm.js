@@ -12,7 +12,7 @@ import {
 import { getDocs, orderBy, query, where } from "@firebase/firestore";
 import "./ReservationForm.css";
 import "./Calendar.css";
-import ReservationList from "./ReservationList";
+import SideNav from "./SideNav";
 
 const defaultForm = {
   date: new Date(),
@@ -63,21 +63,6 @@ const NewReservation = (props) => {
       );
     };
     getTimeSlots();
-
-    // GET Reservation data
-    const getReservations = async () => {
-      const resData = await getDocs(
-        query(
-          reservationsCollection,
-          where("date", ">=", new Date()),
-          orderBy("date")
-        )
-      );
-      setReservations(
-        resData.docs.map((resDoc) => ({ ...resDoc.data(), id: resDoc.id }))
-      );
-    };
-    getReservations();
   }, [user, loading]);
 
   // Setting dropdown options for Form => Rooms
@@ -116,9 +101,8 @@ const NewReservation = (props) => {
       let formYear = formDate.getFullYear();
       let submittedDate = `${formMonth}/${formDay}/${formYear}`;
 
-      
       // Can't make reservation with blank forms
-      if ((formData.timeslot === '' || formData.room === '')) {
+      if (formData.timeslot === "" || formData.room === "") {
         return false;
       } else if (
         // Double booking logic: can't book same room, date, and timeslot
@@ -126,7 +110,7 @@ const NewReservation = (props) => {
         reservationDate === submittedDate
       ) {
         return false;
-      }  else {
+      } else {
         return true;
       }
     });
@@ -138,11 +122,11 @@ const NewReservation = (props) => {
   const createReservation = (event) => {
     event.preventDefault();
     let savedResult;
-    
+
     isValid().then((result) => {
       // If result is an empty array
-      if (result.length === 0){
-        savedResult = false
+      if (result.length === 0) {
+        savedResult = false;
       } else {
         savedResult = result.every(Boolean);
       }
@@ -179,70 +163,79 @@ const NewReservation = (props) => {
   return (
     <form onSubmit={createReservation}>
       <section id="reservationForm">
-        <h2> Make a Reservation </h2>
-        <ul>
-          <li>Reservation blocks are 30 mins long from 9AM - 5PM</li>
-          <li>Max reservation is 1 hr</li>
-          <li>
-            If no one has room after you come your time, can extend reservation
-            for 1 hour
-          </li>
-        </ul>
-        <div className="row">
-          <div className="column">
-            <label htmlFor="date" className="calendar">
-              <h3>Select a Date:</h3>
-              <div id="calendarContainer">
-                <DatePicker
-                  selected={startDate}
-                  onChange={(date) => {
-                    setStartDate(date);
-                    setFormData({ ...formData, date: date });
-                  }}
-                  minDate={new Date()}
-                  filterDate={isWeekday}
-                  inline
+        <div className="collection row">
+          <div className="col s12 m6 l6">
+            <div id="calendar-container">
+              <label htmlFor="date" className="calendar">
+                <h3>Select a Date:</h3>
+                <div id="calendarContainer">
+                  <DatePicker
+                    selected={startDate}
+                    onChange={(date) => {
+                      setStartDate(date);
+                      setFormData({ ...formData, date: date });
+                    }}
+                    minDate={new Date()}
+                    filterDate={isWeekday}
+                    inline
+                  />
+                </div>
+              </label>
+            </div>
+          </div>
+          <div className="col s12 m6 l6">
+            <div id="reservation-form-container">
+              <h2> Make a Reservation </h2>
+              <ul className="reservation-rules">
+                <li>Reservation blocks are 30 mins long from 9AM - 5PM</li>
+                <li>Max reservation is 1 hr</li>
+                <li>
+                  If no one has room after you come your time, can extend
+                  reservation for 1 hour
+                </li>
+              </ul>
+              <SideNav />
+              <label htmlFor="timeslot" className="form-right">
+                <select
+                  type="text"
+                  name="timeslot"
+                  value={formData.timeslot}
+                  onChange={onInputChange}
+                >
+                  <option>Select a time slot:</option>
+                  {timeSlotComponents}
+                </select>
+              </label>
+              <label htmlFor="room" className="form-right">
+                <select
+                  type="text"
+                  name="room"
+                  value={formData.room}
+                  onChange={onInputChange}
+                >
+                  <option>Select a room:</option>
+                  {roomComponents}
+                </select>
+              </label>
+              <br />
+              <label htmlFor="description" className="form-right">
+                <input
+                  type="text"
+                  name="description"
+                  placeholder="(Optional) Reservation Description"
+                  value={formData.description}
+                  onChange={onInputChange}
                 />
-              </div>
-            </label>
-          </div>
-          <div className="column">
-            <label htmlFor="description" className="form-right">
-              Description:
-              <input
-                type="text"
-                name="description"
-                value={formData.description}
-                onChange={onInputChange}
-              />
-            </label>
-            <label htmlFor="timeslot" className="form-right">
-              <select
-                type="text"
-                name="timeslot"
-                value={formData.timeslot}
-                onChange={onInputChange}
+              </label>
+              <button
+                className="btn waves-effect waves-light"
+                type="submit"
+                name="action"
               >
-                <option>Select a time slot:</option>
-                {timeSlotComponents}
-              </select>
-            </label>
-            <label htmlFor="room" className="form-right">
-              <select
-                type="text"
-                name="room"
-                value={formData.room}
-                onChange={onInputChange}
-              >
-                <option>Select a room:</option>
-                {roomComponents}
-              </select>
-            </label>
-            <input type="submit" />
-          </div>
-          <div className="column" id="reservation-list">
-            <h3>Current Reservations</h3>
-            <ReservationList reservationData={reservations} />
+                Submit
+                <i class="material-icons right">send</i>
+              </button>
+            </div>
           </div>
         </div>
       </section>

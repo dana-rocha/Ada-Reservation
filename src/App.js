@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { addDoc } from "@firebase/firestore";
 import { reservationsCollection } from "./firebase-config";
 import NewReservation from "./components/ReservationForm";
@@ -13,14 +13,18 @@ function App() {
   return (
     <div className="App">
       <header>
-        <img src={adaLogo} alt="Ada Developers Academy logo" id="adaLogo" />
-        <nav id="navbar">
-          <Link to="/home" className="links">
-            Home
-          </Link>
-          <Link to="/user" className="links">
-            User
-          </Link>
+        <nav className="navBar">
+          <div className="nav-wrapper">
+            <img src={adaLogo} alt="Ada Developers Academy logo" id="adaLogo" />
+            <ul id="nav-mobile" className="right hide-on-med-and-down">
+              <li>
+                <a href="/home">Home</a>
+              </li>
+              <li>
+                <a href="/user">User</a>
+              </li>
+            </ul>
+          </div>
         </nav>
       </header>
       <main>

@@ -26,7 +26,11 @@ const Reservation = (props) => {
       <p>{timeslot}</p>
       <p>{reserved}</p>
       <p>{description}</p>
-      <button onClick={cancelRes} id="cancelButton">
+      <button
+        onClick={cancelRes}
+        id="cancelButton"
+        className="waves-effect waves-light btn"
+      >
         Cancel Reservation
       </button>
     </div>

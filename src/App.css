@@ -1,62 +1,36 @@
-/* .app, header, footer {
-  border: 1px solid red;
-} */
-
 .App {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  text-align: center;
   font-family: 'Open Sans';
 }
 
-header {
-  display: flex;
-  justify-content: left;
+main, footer {
+  text-align: center;
+}
+
+p {
+  font-size: larger;
+  font-weight: bolder;
 }
 
 #adaLogo {
-  max-width: 150px;
+  max-width: 175px;
   padding: 10px;
-}
-
-#navbar {
-  padding: 10px;
-  position: absolute;
-  right: 0;
-  margin-top: 10px;
-}
-
-.links {
-  padding: 10px;
-  text-decoration: none;
-  font-weight: bold;
-  color: #0AA3C2;
-}
-
-.links:hover {
-  color:#E80F5E;
 }
 
 #ada-pic {
   height: 300px;
 }
 
-main {
-  position: relative;
+.navBar {
+  background-color: white;
 }
 
-main ul {
-  list-style-type: none; 
+#nav-mobile li a {
+  font-weight: bold;
+  color: #0AA3C2;
 }
 
-li::before {
-  content: "🐾 ";
-  zoom: 1.25;
-}
-
-p {
-  font-size: larger;
-  font-weight: bolder;
+#nav-mobile li a:hover {
+  color:#E80F5E;
 }
 
 footer {
