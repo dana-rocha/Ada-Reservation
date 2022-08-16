@@ -251,7 +251,8 @@ const NewReservation = (props) => {
               </select>
             </label>
 
-            {/* Room for Reservation */}
+            {/* Room for Reservations */}
+
             <label htmlFor="room" className="form-right">
               <select
                 type="text"

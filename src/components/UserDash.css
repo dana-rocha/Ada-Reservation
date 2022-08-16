@@ -5,6 +5,7 @@
   align-items: center;
   justify-content: center;
   display: flex;
+  border: 5px dotted green;
   }
 
 .dashboard__column {
@@ -12,6 +13,7 @@
   height: 60vh;
   overflow-y: scroll;
   overflow-x:hidden;
+  border: 5px dashed red;
 }
 
 .dashboard__container {

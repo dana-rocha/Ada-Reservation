@@ -67,25 +67,29 @@ function Dashboard() {
   };
 
   return (
-    <div className="dashboard">
-      <div className="dashboard__column">
-        <div className="dashboard__container">
-          Logged in as
-          <div>{name}</div>
-          <div>{user?.email}</div>
-          <button className="dashboard__btn" onClick={logout}>
-            Logout
-          </button>
+    // <div className="dashboard">
+      <div className="collection row">
+      {/* <div className="col s12 m6 l6"> */}
+        <div className="dashboard__column col s12 m6 l6">
+          <div className="dashboard__container">
+            Logged in as
+            <div>{name}</div>
+            <div>{user?.email}</div>
+            <button className="dashboard__btn" onClick={logout}>
+              Logout
+            </button>
+          </div>
+        </div>
+        {/* <div className="col s12 m6 l6"> */}
+        <div className="dashboard__column col s12 m6 l6">
+          <h3>My Reservations</h3>
+          <ReservationList
+            reservationData={reservations}
+            cancelResCallback={deleteRes}
+          />
         </div>
       </div>
-      <div className="dashboard__column">
-        <h3>My Reservations</h3>
-        <ReservationList
-          reservationData={reservations}
-          cancelResCallback={deleteRes}
-        />
-      </div>
-    </div>
+    // </div>
   );
 }
 export default Dashboard;
