@@ -188,7 +188,7 @@ const NewReservation = (props) => {
           <div id="container reservation-form-container">
             <h4> Make a Reservation </h4>
             
-            <p>🦁 C18 Lions & Cheetahs - We're rooting for you! 🐆 </p>
+            <p className="c18">🦁 C18 Lions & Cheetahs - We're rooting for you! 🐆 </p>
             <ul className="reservation-rules">
               <li>Reservation blocks are 30 mins long from 9AM - 5PM</li>
               <li>Max reservation is 1 hr</li>

@@ -58,6 +58,5 @@ p {
 .page-footer,
 .footer-copyright,
 .footer-container {
-  border: 1px solid red;
   top: 50%;
 }
