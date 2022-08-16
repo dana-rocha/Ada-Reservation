@@ -11,10 +11,10 @@ import {
 } from "../firebase-config";
 import { getDocs, orderBy, query, where } from "@firebase/firestore";
 import 'materialize-css/dist/css/materialize.min.css';
-import M from 'materialize-css';
+// import M from 'materialize-css';
 import "./ReservationForm.css";
 import "./Calendar.css";
-import ReservationList from "./ReservationList";
+// import ReservationList from "./ReservationList";
 // import SideNav from "../components/SideNav";
 // import useWindowSize from "./hooks";
 
@@ -182,27 +182,23 @@ const NewReservation = (props) => {
   };
 
   return (
-    <form onSubmit={createReservation}>
-      <section id="reservationForm">
-        <h2> Make a Reservation </h2>
-        <ul>
-          <li>Reservation blocks are 30 mins long from 9AM - 5PM</li>
-          <li>Max reservation is 1 hr</li>
-          <li>
-            If no one has room after you come your time, can extend reservation
-            for 1 hour
-          </li>
-        </ul>
-        <div className="row">
-              <div className="column" id="reservation-list">
-                {/* <SideNav /> */}
-                <h3>Current Reservations</h3>
-                <ReservationList reservationData={reservations} />
-              </div>
+    <div className='container'>
+      <form onSubmit={createReservation}>
+      {/* <section id="reservationForm"> */}
 
-          <div className="column">
+
+        {/* List of Reservations */}
+          {/* <div className="col s12 m6 l6" id="reservation-list">
+            <h3>Current Reservations</h3>
+            <ReservationList reservationData={reservations} />
+          </div> */}
+
+        <div className="collection row">
+
+        {/* Calendar*/}
+          <div className="col s12 m6 l6">
             <label htmlFor="date" className="calendar">
-              <h3>Select a Date:</h3>
+              <h4>Select a Date:</h4>
               <div id="calendarContainer">
                 <DatePicker
                   selected={startDate}
@@ -217,7 +213,21 @@ const NewReservation = (props) => {
               </div>
             </label>
           </div>
-          <div className="column">
+
+        {/* Form Fields */}
+          <div className="col s12 m6 l6">
+            {/* Reservation Rules */}
+            <h4> Make a Reservation </h4>
+            <ul>
+              <li>Reservation blocks are 30 mins long from 9AM - 5PM</li>
+              <li>Max reservation is 1 hr</li>
+              <li>
+                If no one has room after you come your time, can extend reservation
+                for 1 hour
+              </li>
+            </ul>
+            
+            {/* Reservation Description */}
             <label htmlFor="description" className="form-right">
               Description:
               <input
@@ -227,6 +237,8 @@ const NewReservation = (props) => {
                 onChange={onInputChange}
               />
             </label>
+
+            {/* Reservation Timeslot */}
             <label htmlFor="timeslot" className="form-right">
               <select
                 type="text"
@@ -238,6 +250,8 @@ const NewReservation = (props) => {
                 {timeSlotComponents}
               </select>
             </label>
+
+            {/* Room for Reservation */}
             <label htmlFor="room" className="form-right">
               <select
                 type="text"
@@ -251,9 +265,11 @@ const NewReservation = (props) => {
             </label>
             <input type="submit" />
           </div>
+      {/* </section> */}
         </div>
-      </section>
     </form>
+
+    </div>
   );
 };
 

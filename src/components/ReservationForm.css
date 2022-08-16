@@ -3,20 +3,29 @@
 } */
 
 .row {
-    display: flex;
+    display: block;
+    border: 1px solid green;
 }
 
-.column {
+/* .column {
     flex: 33.333%;
     height: auto;
     min-height: 55vh;
+    max-width: 100%;
     margin-bottom: 50px;
+    column-width: fixed;
+} */
+
+.col {
+  border: 1px dashed red;
+  max-width: 100vh;
+  max-height: 100vh;
 }
 
 #reservation-list {
     height: 200px;
     overflow-y: scroll;
-    overflow-x:hidden;
+    overflow-x: hidden;
     margin-bottom: 50px;
 }
 
