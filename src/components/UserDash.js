@@ -69,9 +69,9 @@ function Dashboard() {
   return (
     <div className="collection row dashboard-content">
 
-      <div className="dashboard__column col s12 m6 l6">
+      <div className="dashboard__column logout-column col s12 m6 l6">
         <div className="container dashboard__container">
-          Logged in as
+          Logged in as:
           <div>{name}</div>
           <div>{user?.email}</div>
           <button className="dashboard__btn" onClick={logout}>Logout</button>
@@ -80,7 +80,7 @@ function Dashboard() {
 
       <div className="dashboard__column col s12 m6 l6">
         <div className='container users-list'>
-          <h3>My Reservations</h3>
+          <h4>My Reservations: </h4>
           <ReservationList
             reservationData={reservations}
             cancelResCallback={deleteRes}

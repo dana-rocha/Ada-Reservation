@@ -22,6 +22,8 @@ p {
 
 .navBar {
   background-color: white;
+  border: 3px dashed purple;
+  margin-bottom: 3%;
 }
 
 #nav-mobile li a {

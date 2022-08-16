@@ -170,7 +170,7 @@ const NewReservation = (props) => {
           <div className="col s12 m6 l6">
             <div id="container calendar-container">
               <label htmlFor="date" className="calendar">
-                <h3>Select a Date:</h3>
+                <h4>Select a Date:</h4>
                 <div id="calendarContainer">
                   <DatePicker
                     selected={startDate}
@@ -191,7 +191,7 @@ const NewReservation = (props) => {
           {/* Reservation Form Column */}
           <div className="col s12 m6 l6">
             <div id="container reservation-form-container">
-              <h2> Make a Reservation </h2>
+              <h4> Make a Reservation </h4>
               <ul className="reservation-rules">
                 <li>Reservation blocks are 30 mins long from 9AM - 5PM</li>
                 <li>Max reservation is 1 hr</li>

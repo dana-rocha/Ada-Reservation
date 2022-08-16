@@ -15,17 +15,38 @@
   overflow-x:hidden;
 }
 
+.logout-column {
+  /* border: 2px dashed blueviolet; */
+  position: relative;
+
+}
+
 .dashboard__container {
   display: flex;
   flex-direction: column;
-  text-align: center;
+  align-items: center;
   background-color: #0F355E;
   color: white;
-  padding: 30px;
+  padding: 20px;
   width: 50%;
-  margin-left: 100px;
+  height: auto;
+
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) translateX(45%);
+
+  /* margin-left: 100px; */
+  /* white-space: pre-line; */
+  /* overflow-wrap: break-word; */
+
+  word-break: break-all;
+  
+  /* text-align: center; */
+  /* justify-content: center; */
   box-shadow: 10px 10px #F7B400;
+  border: 2px dashed blueviolet;
   }
+
 
 .dashboard__btn {
   padding: 10px;
