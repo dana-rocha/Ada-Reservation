@@ -68,7 +68,7 @@ function Dashboard() {
 
   return (
     <div className="collection row dashboard-content">
-
+      {/* Logout Column (Left) */}
       <div className="dashboard__column logout-column col s12 m6 l6">
         <div className="container dashboard__container">
           Logged in as:
@@ -78,6 +78,7 @@ function Dashboard() {
         </div>
       </div>
 
+      {/* User's Reservations Column (Right) */}
       <div className="dashboard__column col s12 m6 l6">
         <div className='container users-list'>
           <h4>My Reservations: </h4>

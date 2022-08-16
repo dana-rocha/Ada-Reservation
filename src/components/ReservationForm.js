@@ -167,8 +167,8 @@ const NewReservation = (props) => {
         <div className="collection row">
 
           {/* Calendar Column */}
-          <div className="col s12 m6 l6">
-            <div id="container calendar-container">
+          <div className="left-column col s12 m6 l6">
+            <div id="container calendar-column">
               <label htmlFor="date" className="calendar">
                 <h4>Select a Date:</h4>
                 <div id="calendarContainer">
@@ -189,7 +189,7 @@ const NewReservation = (props) => {
           
 
           {/* Reservation Form Column */}
-          <div className="col s12 m6 l6">
+          <div className="right-column col s12 m6 l6">
             <div id="container reservation-form-container">
               <h4> Make a Reservation </h4>
               <ul className="reservation-rules">
@@ -208,7 +208,7 @@ const NewReservation = (props) => {
                   value={formData.timeslot}
                   onChange={onInputChange}
                 >
-                  <option>Select a time slot:</option>
+                  <option>Select a timeslot:</option>
                   {timeSlotComponents}
                 </select>
               </label>

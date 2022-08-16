@@ -1,4 +1,4 @@
-.dashboard {
+/* .dashboard {
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -6,11 +6,11 @@
   justify-content: center;
   display: flex;
   border: 5px dashed green;
-  }
+  } */
 
 .dashboard__column {
   flex: 50%;
-  height: 60vh;
+  height: 75vh;
   overflow-y: scroll;
   overflow-x:hidden;
 }

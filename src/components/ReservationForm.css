@@ -1,5 +1,6 @@
 .row {
     display: block;
+    height: 75vh;
     border: 3px dashed green;
 }
 
@@ -7,6 +8,10 @@
   border: 3px dotted red;
   max-width: 100vh;
   max-height: 100vh;
+}
+
+.left-column, .right-column {
+  margin: 0;
 }
 
 /* .column {
@@ -47,10 +52,23 @@ h3 {
     display: none;
 }
 
+#calendar-column {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: stretch;
+  width: 10%;
+  /* flex-grow: 1; */
+  /* position: absolute;
+  top: 50%;
+  transform: translateY(-50%) translateX(45%); */
+}
+
 #calendarContainer {
-    zoom: 1.90;
+    zoom: 1.40;
     margin: 25px;
 }
+
 
 /* FORM STYLE */
 select {
