@@ -3,6 +3,7 @@
   height: 75vh;
   overflow-y: scroll;
   overflow-x:hidden;
+  border: hidden;
 }
 
 .logout-column {
