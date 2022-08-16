@@ -231,7 +231,7 @@ const NewReservation = (props) => {
               />
             </label>
             <button
-              className="btn waves-effect waves-light"
+              className="btn submit-btn"
               type="submit"
               name="action"
             >

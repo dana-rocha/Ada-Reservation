@@ -4,6 +4,7 @@ import { reservationsCollection } from "../firebase-config";
 import { getDocs, orderBy, query, where } from "@firebase/firestore";
 import "./ReservationForm.css";
 import M from "materialize-css/dist/js/materialize.min.js";
+import './SideNav.css';
 
 
 const SideNav = () => {
