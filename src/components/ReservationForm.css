@@ -14,12 +14,6 @@
   margin: 0;
 }
 
-/* .column {
-    flex: 50%;
-    height: auto;
-    margin: 25px;
-} */
-
 #reservation-list {
     height: auto;
     overflow-y: scroll;
@@ -63,12 +57,6 @@ h3 {
   top: 50%;
   transform: translateY(-50%) translateX(45%); */
 }
-
-#calendarContainer {
-    zoom: 1.40;
-    margin: 25px;
-}
-
 
 /* FORM STYLE */
 select {

@@ -34,7 +34,13 @@ function App() {
           <Route path="/user" element={<User />} />
         </Routes>
       </main>
-      <footer>© 2022 Ada C17 alumni - Dana Rocha 🐳 & Elaine Smith 🦦 </footer>
+      <footer className="page-footer">
+        <div className="footer-copyright">
+          <div className="container footer-container">
+            © 2022 Ada C17 alumni - Dana Rocha 🐳 & Elaine Smith 🦦
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

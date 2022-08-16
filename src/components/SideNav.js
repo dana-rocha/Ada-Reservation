@@ -29,7 +29,7 @@ const SideNav = () => {
 
   return (
     <>
-      <ul id="slide-out" class="sidenav">
+      <ul id="slide-out" className="sidenav">
         <li>
           <div id="reservation-list">
             <h3>Current Reservations</h3>
@@ -37,8 +37,8 @@ const SideNav = () => {
           </div>
         </li>
       </ul>
-      <a href="#" data-target="slide-out" class="sidenav-trigger">
-        <i class="material-icons">menu</i> Current Reservations
+      <a href="#" data-target="slide-out" className="sidenav-trigger">
+        <i className="material-icons">menu</i> Current Reservations
       </a>
     </>
   );

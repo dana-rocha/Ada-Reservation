@@ -13,21 +13,35 @@ p {
 
 #adaLogo {
   max-width: 175px;
-  padding: 10px;
+  margin: 0;
+  margin-left: 15px;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 #ada-pic {
   height: 300px;
 }
 
+.nav-wrapper {
+  height: auto;
+  position: relative;
+}
+
 .navBar {
   background-color: white;
-  border: 3px dashed purple;
   margin-bottom: 3%;
+}
+
+#nav-mobile {
+  margin-right: 25px;
 }
 
 #nav-mobile li a {
   font-weight: bold;
+  font-size: larger;
   color: #0AA3C2;
 }
 
@@ -35,12 +49,15 @@ p {
   color:#E80F5E;
 }
 
-footer {
+.page-footer {
   background-color: #0F355E;
   color: white;
-  font-size: smaller;
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-  padding: 5px;
+  font-size: small;
+}
+
+.page-footer,
+.footer-copyright,
+.footer-container {
+  border: 1px solid red;
+  top: 50%;
 }

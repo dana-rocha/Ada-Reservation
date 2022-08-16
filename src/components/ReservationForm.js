@@ -32,7 +32,6 @@ const NewReservation = (props) => {
   const [startDate, setStartDate] = useState(new Date());
   const [rooms, setRooms] = useState([]);
   const [timeSlots, setTimeSlots] = useState([]);
-  const [reservations, setReservations] = useState([]);
 
   useEffect(() => {
     // User can't access home and user page without login
@@ -162,91 +161,84 @@ const NewReservation = (props) => {
 
   return (
     <form onSubmit={createReservation}>
-      {/* <section id="reservationForm"> */}
-
-        <div className="collection row">
-
-          {/* Calendar Column */}
-          <div className="left-column col s12 m6 l6">
-            <div id="container calendar-column">
-              <label htmlFor="date" className="calendar">
-                <h4>Select a Date:</h4>
-                <div id="calendarContainer">
-                  <DatePicker
-                    selected={startDate}
-                    onChange={(date) => {
-                      setStartDate(date);
-                      setFormData({ ...formData, date: date });
-                    }}
-                    minDate={new Date()}
-                    filterDate={isWeekday}
-                    inline
-                  />
-                </div>
-              </label>
-            </div>
-          </div>
-          
-
-          {/* Reservation Form Column */}
-          <div className="right-column col s12 m6 l6">
-            <div id="container reservation-form-container">
-              <h4> Make a Reservation </h4>
-              <ul className="reservation-rules">
-                <li>Reservation blocks are 30 mins long from 9AM - 5PM</li>
-                <li>Max reservation is 1 hr</li>
-                <li>
-                  If no one has room after you come your time, can extend
-                  reservation for 1 hour
-                </li>
-              </ul>
-              <SideNav />
-              <label htmlFor="timeslot" className="form-right">
-                <select
-                  type="text"
-                  name="timeslot"
-                  value={formData.timeslot}
-                  onChange={onInputChange}
-                >
-                  <option>Select a timeslot:</option>
-                  {timeSlotComponents}
-                </select>
-              </label>
-              <label htmlFor="room" className="form-right">
-                <select
-                  type="text"
-                  name="room"
-                  value={formData.room}
-                  onChange={onInputChange}
-                >
-                  <option>Select a room:</option>
-                  {roomComponents}
-                </select>
-              </label>
-              <br />
-              <label htmlFor="description" className="form-right">
-                <input
-                  type="text"
-                  name="description"
-                  placeholder="(Optional) Reservation Description"
-                  value={formData.description}
-                  onChange={onInputChange}
+      <div className="collection row">
+        {/* Calendar Column */}
+        <div className="left-column col s12 m6 l6">
+          <div id="container calendar-column">
+            <label htmlFor="date" className="calendar">
+              <h4>Select a Date:</h4>
+              <div id="calendarContainer">
+                <DatePicker
+                  selected={startDate}
+                  onChange={(date) => {
+                    setStartDate(date);
+                    setFormData({ ...formData, date: date });
+                  }}
+                  minDate={new Date()}
+                  filterDate={isWeekday}
+                  inline
                 />
-              </label>
-              <button
-                className="btn waves-effect waves-light"
-                type="submit"
-                name="action"
-              >
-                Submit
-                <i class="material-icons right">send</i>
-              </button>
-            </div>
+              </div>
+            </label>
           </div>
         </div>
 
-
-      {/* </section> */}
+        {/* Reservation Form Column */}
+        <div className="right-column col s12 m6 l6">
+          <div id="container reservation-form-container">
+            <h4> Make a Reservation </h4>
+            <ul className="reservation-rules">
+              <li>Reservation blocks are 30 mins long from 9AM - 5PM</li>
+              <li>Max reservation is 1 hr</li>
+              <li>
+                If no one has room after you come your time, can extend
+                reservation for 1 hour
+              </li>
+            </ul>
+            <SideNav />
+            <label htmlFor="timeslot" className="form-right">
+              <select
+                type="text"
+                name="timeslot"
+                value={formData.timeslot}
+                onChange={onInputChange}
+              >
+                <option>Select a timeslot:</option>
+                {timeSlotComponents}
+              </select>
+            </label>
+            <label htmlFor="room" className="form-right">
+              <select
+                type="text"
+                name="room"
+                value={formData.room}
+                onChange={onInputChange}
+              >
+                <option>Select a room:</option>
+                {roomComponents}
+              </select>
+            </label>
+            <br />
+            <label htmlFor="description" className="form-right">
+              <input
+                type="text"
+                name="description"
+                placeholder="(Optional) Reservation Description"
+                value={formData.description}
+                onChange={onInputChange}
+              />
+            </label>
+            <button
+              className="btn waves-effect waves-light"
+              type="submit"
+              name="action"
+            >
+              Submit
+              <i className="material-icons right">send</i>
+            </button>
+          </div>
+        </div>
+      </div>
     </form>
   );
 };
