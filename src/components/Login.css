@@ -26,10 +26,15 @@
     border: none;
     color: white;
     background-color: black;
+    border-radius: 2.5px 2.5px 2.5px 2.5px;
 }
 
 .login__google {
         background-color: #0AA3C2;
+}
+
+.login__btn:hover {
+    background-color: #e7175f;
 }
 
 .login div {

@@ -45,6 +45,7 @@ li {
   display:block;
   margin: 0;
   padding: 0;
+  color: #0AA3C2;
 }
 
 h4 {
@@ -83,6 +84,8 @@ select {
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
+  font-family: 'Open Sans';
+  font-size: larger;
 }
 select::-ms-expand {
   display: none;
