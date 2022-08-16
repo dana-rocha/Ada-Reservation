@@ -71,7 +71,7 @@ function Dashboard() {
       <div className="collection row">
       {/* <div className="col s12 m6 l6"> */}
         <div className="dashboard__column col s12 m6 l6">
-          <div className="dashboard__container">
+          <div className="container dashboard__container">
             Logged in as
             <div>{name}</div>
             <div>{user?.email}</div>
@@ -82,11 +82,13 @@ function Dashboard() {
         </div>
         {/* <div className="col s12 m6 l6"> */}
         <div className="dashboard__column col s12 m6 l6">
+          <div className="container users-list ">
           <h3>My Reservations</h3>
           <ReservationList
             reservationData={reservations}
             cancelResCallback={deleteRes}
           />
+          </div>
         </div>
       </div>
     // </div>

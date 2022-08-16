@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: center;
   display: flex;
-  border: 5px dotted green;
+  /* border: 5px dotted green; */
   }
 
 .dashboard__column {
@@ -13,20 +13,37 @@
   height: 60vh;
   overflow-y: scroll;
   overflow-x:hidden;
-  border: 5px dashed red;
+  /* border: 5px dashed red; */
+  justify-content: center;
+  text-align: center;
+  position: relative;
 }
 
 .dashboard__container {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* text-align: center; */
   background-color: #0F355E;
   color: white;
-  padding: 30px;
+  /* padding: 30px; */
   width: 50%;
-  margin-left: 100px;
+  /* margin-left: 100px; */
+  /* float: center; */
   box-shadow: 10px 10px #F7B400;
+
+  /* border: 5px solid purple; */
+
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* margin: -25px 0 0 -25px; */
+  transform: translate(-50%, 50%);
   }
+
+.users-list {
+  margin: auto;
+}
 
 .dashboard__btn {
   padding: 10px;

@@ -197,6 +197,8 @@ const NewReservation = (props) => {
 
         {/* Calendar*/}
           <div className="col s12 m6 l6">
+            <div className="container">
+
             <label htmlFor="date" className="calendar">
               <h4>Select a Date:</h4>
               <div id="calendarContainer">
@@ -209,13 +211,16 @@ const NewReservation = (props) => {
                   minDate={new Date()}
                   filterDate={isWeekday}
                   inline
-                />
+                  />
               </div>
             </label>
+            </div>
           </div>
 
         {/* Form Fields */}
           <div className="col s12 m6 l6">
+            <div className="container">
+
             {/* Reservation Rules */}
             <h4> Make a Reservation </h4>
             <ul>
@@ -235,7 +240,7 @@ const NewReservation = (props) => {
                 name="description"
                 value={formData.description}
                 onChange={onInputChange}
-              />
+                />
             </label>
 
             {/* Reservation Timeslot */}
@@ -245,26 +250,26 @@ const NewReservation = (props) => {
                 name="timeslot"
                 value={formData.timeslot}
                 onChange={onInputChange}
-              >
+                >
                 <option>Select a time slot:</option>
                 {timeSlotComponents}
               </select>
             </label>
 
             {/* Room for Reservations */}
-
             <label htmlFor="room" className="form-right">
               <select
                 type="text"
                 name="room"
                 value={formData.room}
                 onChange={onInputChange}
-              >
+                >
                 <option>Select a room:</option>
                 {roomComponents}
               </select>
             </label>
             <input type="submit" />
+          </div>
           </div>
       {/* </section> */}
         </div>
