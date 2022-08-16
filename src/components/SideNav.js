@@ -5,7 +5,6 @@ import { getDocs, orderBy, query, where } from "@firebase/firestore";
 import "./ReservationForm.css";
 import M from "materialize-css/dist/js/materialize.min.js";
 
-
 const SideNav = () => {
   const [reservations, setReservations] = useState([]);
 
@@ -38,8 +37,9 @@ const SideNav = () => {
           </div>
         </li>
       </ul>
-      <a href="#" data-target="slide-out" className="sidenav-trigger">
-        <i className="material-icons">menu</i> Current Reservations
+      <a href="#slide-out" data-target="slide-out" className="sidenav-trigger">
+        <i className="material-icons">menu</i>
+        <p>Current Reservations</p>
       </a>
     </>
   );

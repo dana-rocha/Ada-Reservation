@@ -34,13 +34,7 @@ function App() {
           <Route path="/user" element={<User />} />
         </Routes>
       </main>
-      <footer className="page-footer">
-        <div className="footer-copyright">
-          <div className="container footer-container">
-            © 2022 Ada C17 alumni - Dana Rocha 🐳 & Elaine Smith 🦦
-          </div>
-        </div>
-      </footer>
+      <footer>© 2022 Ada C17 alumni - Dana Rocha 🐳 & Elaine Smith 🦦 </footer>
     </div>
   );
 }
@@ -48,7 +42,7 @@ function App() {
 function Login() {
   return (
     <>
-      <p>🦁 C18 - You got this! 🐆 </p>
+      <p>🦁 C18 - You got this! 🐆</p>
       <img src={AdaPic} alt="Changing the face of tech." id="ada-pic" />
       <LoginComponent />
     </>

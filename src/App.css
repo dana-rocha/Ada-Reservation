@@ -49,15 +49,12 @@ p {
   color:#E80F5E;
 }
 
-.page-footer {
+footer {
   background-color: #0F355E;
   color: white;
   font-size: small;
-}
-
-.page-footer,
-.footer-copyright,
-.footer-container {
-  border: 1px solid red;
-  top: 50%;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  padding: 5px;
 }

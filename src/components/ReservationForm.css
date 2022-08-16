@@ -1,17 +1,19 @@
 .row {
     display: block;
-    height: 75vh;
-    border: 3px dashed green;
+    border: none;
 }
 
 .col {
-  border: 3px dotted red;
   max-width: 100vh;
   max-height: 100vh;
+  height: auto;
+  overflow-y: scroll;
+  overflow-x:hidden;
 }
 
 .left-column, .right-column {
   margin: 0;
+  margin-bottom: 50px;
 }
 
 #reservation-list {
@@ -25,7 +27,7 @@ ul {
     zoom:1;
     *display:inline;
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 25px;
 }
 
 .reservation-rules li::before {
@@ -35,6 +37,14 @@ ul {
 
 li {
     text-align: left;
+}
+
+.sidenav-trigger,
+.sidenav-trigger i,
+.sidenav-trigger p {
+  display:block;
+  margin: 0;
+  padding: 0;
 }
 
 h4 {
@@ -53,10 +63,6 @@ h4 {
   flex-direction: column;
   align-items: stretch;
   width: 10%;
-  /* flex-grow: 1; */
-  /* position: absolute;
-  top: 50%;
-  transform: translateY(-50%) translateX(45%); */
 }
 
 /* FORM STYLE */
@@ -68,7 +74,7 @@ select {
   background-size: auto 50%;
   border: none;
   color: #ffffff;
-  padding: 10px 30px 10px 10px;
+  /* padding: 10px 30px 10px 10px; */
   outline: none;
   -moz-appearance: none;
   -webkit-appearance: none;

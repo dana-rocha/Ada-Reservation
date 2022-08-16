@@ -39,8 +39,16 @@
   font-size: 0.944rem;
 }
 
+/* Removes undesired green bg box inherited from Materialize CSS */
+.react-datepicker__navigation,
+.react-datepicker__navigation--previous,
+.react-datepicker__navigation--next 
+button {
+  background-color: transparent !important;
+}
+
 .react-datepicker__navigation {
-  align-itrems: center;
+  align-items: center;
   background: none;
   display: flex;
   justify-content: center;
