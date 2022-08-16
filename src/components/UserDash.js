@@ -41,11 +41,6 @@ function Dashboard() {
     const getUserRes = async () => {
       const resData = await getDocs(
         query(reservationsCollection, where("reservedBy", "==", user.uid))
-        // where("reservedBy", "==", user.uid)
-        // orderBy("reservedBy"),
-        // orderBy("date", "asc")
-        // // where("date", ">=", new Date())
-        // )
       );
       setReservations(
         resData.docs.map((resDoc) => ({ ...resDoc.data(), id: resDoc.id }))
