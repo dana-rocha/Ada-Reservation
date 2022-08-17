@@ -8,9 +8,9 @@ This project addresses a real world problem we noticed as students while attendi
 It is our desire to turn this project over to the staff and administration of Ada after graduation so that it may help future students. 
 
 ## Demo
-[Live Demo](https://ada-reservation-fb.firebaseapp.com/)
+[Deployed Demo](https://ada-reservation-fb.firebaseapp.com/)
 
-(Embed video demo)
+Recorded Demo
 
 ## Features
 - Authorization: Login/Create New User
