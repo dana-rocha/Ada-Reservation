@@ -41,6 +41,7 @@ dependencies:
     "web-vitals": "^2.1.0"
 ```
 
+## Presentation: [Google Slides](https://docs.google.com/presentation/d/1R5pgiHy6pbSCTmgqM3fxYPbDkwQllzlJ-af52_FNnnw/edit?usp=sharing)
 ## Notes
 Special shoutout to all the wonderful instructors, TAs, & fellow Adies who have shared knowledge, resources, time, & support which made this project possible.
 
